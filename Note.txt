@@ -1,5 +1,11 @@
 Notes : 
 
+
+
+
+
+
+1
 https://lodev.org/cgtutor/images/raycastdelta.gif
 
 The ray starts at the position of the player (posX, posY)
