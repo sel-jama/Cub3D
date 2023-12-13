@@ -46,7 +46,7 @@ PS : 1e30 is an arbitrarily chosen high enough number and can be set to Infinity
  So a quick summary of what we now have:
 
 Projection Plane = 320 pixels in width by 200 pixels in height.
-Field of View = 60 degrees
+Field of View =  degrees
 The size of everything is 64 pixels: So walls are 64 pixels by 64 pixels, sprites are also 64 x 64 pixels.
 Player height is 32 pixels.
 Angle between columns of projection plane = 60 degrees / 320 pixels = 0.1875 degrees per column of pixels.
