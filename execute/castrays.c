@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:51 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/14 15:46:37 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:58:08 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void init_ray_v(t_ray *ray)
 
 double get_distance(double x1, double y1, double x2, double y2)
 {
-    return (sqrt(pow(x2 - x1 - 0.5, 2) + pow(y2 - y1 - 0.5 , 2)));
+    return (sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2)));
 }
 
 void first_horz_inter(t_game **cub, t_ray *ray)
@@ -81,8 +81,6 @@ void first_horz_inter(t_game **cub, t_ray *ray)
         (*cub)->first_intery = floor((*cub)->pos_y / (*cub)->size) * (*cub)->size + (*cub)->size;
     else
         (*cub)->first_intery = floor((*cub)->pos_y / (*cub)->size) * (*cub)->size;
-    if (ray->facing_up)
-        (*cub)->first_intery -= 0.0001;
     if (tan(ray->angle) != 0)
         (*cub)->first_interx = (*cub)->pos_x + ((*cub)->first_intery - (*cub)->pos_y) / tan(ray->angle);
 }
@@ -93,8 +91,6 @@ void first_vert_inter(t_game **cub, t_ray *ray)
         (*cub)->first_interx = floor((*cub)->pos_x / (*cub)->size) * (*cub)->size + (*cub)->size;
     else
         (*cub)->first_interx = floor((*cub)->pos_x / (*cub)->size) * (*cub)->size;
-    if (ray->facing_left)
-    (*cub)->first_interx -= 0.0001;
     
     (*cub)->first_intery = (*cub)->pos_y + ((*cub)->first_interx - (*cub)->pos_x) * tan(ray->angle);
 
@@ -163,7 +159,6 @@ void hori_hit_point(t_game **cast, t_ray *ray)
         delta_x += xstep;
         delta_y += ystep;
     }
-
 }
 
 void vert_hit_point(t_game **cast, t_ray *ray)
