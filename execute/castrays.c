@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:51 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/14 15:58:08 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/14 21:37:33 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ void first_vert_inter(t_game **cub, t_ray *ray)
         (*cub)->first_interx = floor((*cub)->pos_x / (*cub)->size) * (*cub)->size;
     
     (*cub)->first_intery = (*cub)->pos_y + ((*cub)->first_interx - (*cub)->pos_x) * tan(ray->angle);
-
 }
 
 void calculate_horz_step(int size, t_ray *ray, double *x, double *y)
@@ -102,13 +101,14 @@ void calculate_horz_step(int size, t_ray *ray, double *x, double *y)
     double ystep;
 
     xstep = size / tan(ray->angle);
+    ystep = size;
     if (ray->facing_left && xstep > 0)
         xstep *= -1;
     if (ray->facing_right && xstep < 0)
         xstep *= -1;
-    ystep = size;
     if (ray->facing_up)
         ystep *= -1;
+  
     *x = xstep;
     *y = ystep;
 }
@@ -192,7 +192,7 @@ void vert_hit_point(t_game **cast, t_ray *ray)
             ray->hit_vy = delta_y;
             break;
         }
-        printf("%f %f\n", xstep, ystep);
+        //printf("%f %f\n", xstep, ystep);
         delta_x += xstep;
         delta_y += ystep;
     }
