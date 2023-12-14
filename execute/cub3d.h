@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 20:35:19 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/13 02:37:31 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/13 23:07:20 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ void update_ray(t_game **cub);
 void move_player(t_game **cub);
 int	is_player(char content);
 int ft_exit(int keycode, t_game *param);
+void render_ray(t_game **cub, t_ray **r);
 
 void draw_line(void *mlx_ptr, void *win_ptr, int x0, int y0, int x1, int y1, int color);
 

@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:51 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/13 02:36:24 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:46:37 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void init_ray_v(t_ray *ray)
 
 double get_distance(double x1, double y1, double x2, double y2)
 {
-    return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
+    return (sqrt(pow(x2 - x1 - 0.5, 2) + pow(y2 - y1 - 0.5 , 2)));
 }
 
 void first_horz_inter(t_game **cub, t_ray *ray)
@@ -81,8 +81,10 @@ void first_horz_inter(t_game **cub, t_ray *ray)
         (*cub)->first_intery = floor((*cub)->pos_y / (*cub)->size) * (*cub)->size + (*cub)->size;
     else
         (*cub)->first_intery = floor((*cub)->pos_y / (*cub)->size) * (*cub)->size;
-
-    (*cub)->first_interx = (*cub)->pos_x + ((*cub)->first_intery - (*cub)->pos_y) / tan(ray->angle);
+    if (ray->facing_up)
+        (*cub)->first_intery -= 0.0001;
+    if (tan(ray->angle) != 0)
+        (*cub)->first_interx = (*cub)->pos_x + ((*cub)->first_intery - (*cub)->pos_y) / tan(ray->angle);
 }
 
 void first_vert_inter(t_game **cub, t_ray *ray)
@@ -91,8 +93,11 @@ void first_vert_inter(t_game **cub, t_ray *ray)
         (*cub)->first_interx = floor((*cub)->pos_x / (*cub)->size) * (*cub)->size + (*cub)->size;
     else
         (*cub)->first_interx = floor((*cub)->pos_x / (*cub)->size) * (*cub)->size;
-
+    if (ray->facing_left)
+    (*cub)->first_interx -= 0.0001;
+    
     (*cub)->first_intery = (*cub)->pos_y + ((*cub)->first_interx - (*cub)->pos_x) * tan(ray->angle);
+
 }
 
 void calculate_horz_step(int size, t_ray *ray, double *x, double *y)
@@ -144,11 +149,11 @@ void hori_hit_point(t_game **cast, t_ray *ray)
     while (delta_x >= 0 && delta_x <= (*cast)->window_w &&
            delta_y >= 0 && delta_y <= (*cast)->window_h)
     {
-        double x_to_check = delta_x;
-        double y_to_check = delta_y;
-        if (ray->facing_up)
-            y_to_check--;
-        if (is_wall(cast, x_to_check, y_to_check))
+        // double x_to_check = delta_x;
+        // double y_to_check = delta_y;
+        // if (ray->facing_up)
+        //     y_to_check--;
+        if (is_wall(cast, delta_x, delta_y))
         {
             ray->found_h_hit = 1;
             ray->hit_hx = delta_x;
@@ -181,18 +186,18 @@ void vert_hit_point(t_game **cast, t_ray *ray)
     while (delta_x >= 0 && delta_x <= (*cast)->window_w &&
            delta_y >= 0 && delta_y <= (*cast)->window_h)
     {
-        double x_to_check = delta_x;
-        double y_to_check = delta_y;
-        if (ray->facing_left)
-            x_to_check--;
-        if (is_wall(cast, x_to_check, y_to_check))
+        // double x_to_check = delta_x;
+        // double y_to_check = delta_y;
+        // if (ray->facing_left)
+        //     x_to_check--;
+        if (is_wall(cast, delta_x , delta_y))
         {
             ray->found_v_hit = 1;
             ray->hit_vx = delta_x;
             ray->hit_vy = delta_y;
             break;
         }
-
+        printf("%f %f\n", xstep, ystep);
         delta_x += xstep;
         delta_y += ystep;
     }
@@ -203,10 +208,10 @@ void closest_distance(t_game **cast, t_ray *ray)
     double h_dis = DBL_MAX;
     double v_dis = DBL_MAX;
 
-    if (ray->found_h_hit)
-        h_dis = get_distance((*cast)->pos_x, (*cast)->pos_y, ray->hit_hx, ray->hit_hy);
     if (ray->found_v_hit)
         v_dis = get_distance((*cast)->pos_x, (*cast)->pos_y, ray->hit_vx, ray->hit_vy);
+    if (ray->found_h_hit)
+        h_dis = get_distance((*cast)->pos_x, (*cast)->pos_y, ray->hit_hx, ray->hit_hy);
 
     if (h_dis < v_dis)
     {
@@ -228,7 +233,7 @@ void closest_distance(t_game **cast, t_ray *ray)
 void cast_ray(t_game **cast, int col_id, double ray_angle)
 {
     t_ray *ray;
-    // (void)col_id;
+    (void)col_id;
 
     // ray = &(*cast)->ray_array[col_id];
     ray = (*cast)->ray;
@@ -238,9 +243,11 @@ void cast_ray(t_game **cast, int col_id, double ray_angle)
     hori_hit_point(cast, ray);
     // Vertical intersection
     vert_hit_point(cast, ray);
-
     // Choose the closest intersection
     closest_distance(cast, ray);
-    double line_h = (*cast)->window_h * (*cast)->size / ray->dis;
-    draw_vertical_line(cast, col_id, line_h);
+    //fix fisheye
+    // ray->dis = ray->dis * cos(ray->angle - ray->rotation_angle);
+    // double line_h = (*cast)->window_h * (*cast)->size / ray->dis;
+    // draw_vertical_line(cast, col_id, line_h);
+    render_ray(cast, &ray);
 }

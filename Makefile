@@ -6,7 +6,7 @@
 #    By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/25 15:57:00 by sel-jama          #+#    #+#              #
-#    Updated: 2023/12/11 19:49:33 by sel-jama         ###   ########.fr        #
+#    Updated: 2023/12/13 22:58:30 by sel-jama         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,7 @@ SRCS = parse/main.c execute/move.c execute/utils.c execute/castrays.c execute/re
 
 OBJS = ${SRCS:.c=.o}
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
-
+CFLAGS = -Wall -Wextra -Werror
 NAME = cub3d
 
 HEADER = execute/cub3d.h

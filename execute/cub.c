@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:48 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/12 19:39:05 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/14 12:46:46 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	is_player(char content)
 	return (0);
 }
 
-void get_player_pos(t_game **game, int row, int col)
+void get_player_pos(t_game **game, int row, int col, int a, int b)
 {
 	int	x;
 	int	y;
@@ -28,31 +28,33 @@ void get_player_pos(t_game **game, int row, int col)
 	char **m = (*game)->path->map;
 
 	y = 0;
-	while (row > 0)
+	while (row-- > 0)
 	{
 		x = 0;
-		while (col > 0)
+		while (col-- > 0)
 		{
-			if (is_player(m[y / s][x / s]))
+			a = y / s;
+			b = x / s;
+			if (is_player(m[a][b]))
     		{
-        		(*game)->pos_x = x;
-        		(*game)->pos_y = y;
-				(*game)->direction = m[y / s][x / s];
+        		(*game)->pos_x = x + 0.5;
+        		(*game)->pos_y = y + 0.5;
+				(*game)->direction = m[a][b];
 				return ;
 			}
 			x += s;
-			col--;
+			// col--;
 		}
 		col = (*game)->cols;
 		y += s;
-		row--;
+		// row--;
 	}
 }
 
 void    start_game(t_game *cub)
 {
     cub->mlx = mlx_init();
-	get_player_pos(&cub, cub->rows, cub->cols);
+	get_player_pos(&cub, cub->rows, cub->cols, 0, 0);
 	initializer(&cub);
     if (!cub->mlx)
         error_ditected("init failed");
