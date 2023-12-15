@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:51 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/14 21:37:33 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/15 13:03:21 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ void cast_rays(t_game **cast)
     i = 0;
     while (i < (*cast)->ray->num_rays)
     {
+        // ray_angle = (*cast)->ray->rotation_angle - FOV / 2 + i * (FOV / (*cast)->ray->num_rays);
         cast_ray(cast, i, ray_angle);
         // printf(">>>%f\n", ray_angle);
-        ray_angle = ray_angle + (FOV / (*cast)->window_w);
+        ray_angle += FOV / (*cast)->window_w;
         i++;
     }
 }
@@ -77,22 +78,31 @@ double get_distance(double x1, double y1, double x2, double y2)
 
 void first_horz_inter(t_game **cub, t_ray *ray)
 {
-    if (ray->facing_down)
-        (*cub)->first_intery = floor((*cub)->pos_y / (*cub)->size) * (*cub)->size + (*cub)->size;
-    else
-        (*cub)->first_intery = floor((*cub)->pos_y / (*cub)->size) * (*cub)->size;
-    if (tan(ray->angle) != 0)
-        (*cub)->first_interx = (*cub)->pos_x + ((*cub)->first_intery - (*cub)->pos_y) / tan(ray->angle);
+    (void)ray;
+    (*cub)->first_interx = (*cub)->pos_x;
+    (*cub)->first_intery = (*cub)->pos_y;
+    // if (ray->facing_down)
+    //     (*cub)->first_intery = floor((*cub)->pos_y / (*cub)->size) * (*cub)->size + (*cub)->size;
+    // else
+    //     (*cub)->first_intery = (floor((*cub)->pos_y / (*cub)->size) * (*cub)->size);
+    // // if (ray->angle == 0.5 * M_PI || ray->angle == M_PI ||  ray->angle == 1.5 * M_PI || ray->angle == 2 * M_PI)
+    // //     ray->angle++;
+    // if (tan(ray->angle) != 0)
+    //     (*cub)->first_interx = (*cub)->pos_x + ((*cub)->first_intery - (*cub)->pos_y) / tan(ray->angle);
 }
 
 void first_vert_inter(t_game **cub, t_ray *ray)
 {
-    if (ray->facing_right)
-        (*cub)->first_interx = floor((*cub)->pos_x / (*cub)->size) * (*cub)->size + (*cub)->size;
-    else
-        (*cub)->first_interx = floor((*cub)->pos_x / (*cub)->size) * (*cub)->size;
-    
-    (*cub)->first_intery = (*cub)->pos_y + ((*cub)->first_interx - (*cub)->pos_x) * tan(ray->angle);
+    (void)ray;
+    (*cub)->first_interx = (*cub)->pos_x;
+    (*cub)->first_intery = (*cub)->pos_y;
+    // if (ray->facing_right)
+    //     (*cub)->first_interx = floor((*cub)->pos_x / (*cub)->size) * (*cub)->size + (*cub)->size;
+    // else
+    //     (*cub)->first_interx = floor((*cub)->pos_x / (*cub)->size) * (*cub)->size;
+    // // if (ray->angle == 0.5 * M_PI || ray->angle == M_PI ||  ray->angle == 1.5 * M_PI || ray->angle == 2 * M_PI)
+    // //     ray->angle++;
+    // (*cub)->first_intery = (*cub)->pos_y + ((*cub)->first_interx - (*cub)->pos_x) * tan(ray->angle);
 }
 
 void calculate_horz_step(int size, t_ray *ray, double *x, double *y)
@@ -100,15 +110,18 @@ void calculate_horz_step(int size, t_ray *ray, double *x, double *y)
     double xstep;
     double ystep;
 
-    xstep = size / tan(ray->angle);
-    ystep = size;
-    if (ray->facing_left && xstep > 0)
-        xstep *= -1;
-    if (ray->facing_right && xstep < 0)
-        xstep *= -1;
-    if (ray->facing_up)
-        ystep *= -1;
-  
+    // ystep = size;
+    // xstep = size / tan(ray->angle);
+    // if (ray->facing_left && xstep > 0)
+    //     xstep *= -1;
+    // if (ray->facing_right && xstep < 0)
+    //     xstep *= -1;
+    // if (ray->facing_up)
+    //     ystep *= -1;
+    
+    (void)size;
+    xstep = cos(ray->angle);
+    ystep = sin(ray->angle);
     *x = xstep;
     *y = ystep;
 }
@@ -118,14 +131,18 @@ void calculate_vert_step(int size, t_ray *ray, double *x, double *y)
     double xstep;
     double ystep;
         
-    xstep = size;
-    ystep = size * tan(ray->angle);
-    if (ray->facing_left)
-        xstep *= -1;
-    if (ray->facing_up && ystep > 0)
-        ystep *= -1;
-    if (ray->facing_down && ystep < 0)
-        ystep *= -1;
+    // xstep = size;0
+    // ystep = size * tan(ray->angle);
+    // if (ray->facing_left)
+    //     xstep *= -1;
+    // if (ray->facing_up && ystep > 0)
+    //     ystep *= -1;
+    // if (ray->facing_down && ystep < 0)
+    //     ystep *= -1;
+    (void)size;
+    xstep = cos(ray->angle);
+    ystep = sin(ray->angle);
+    
     *x = xstep;
     *y = ystep;
 }
