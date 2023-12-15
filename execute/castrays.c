@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:51 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/15 13:03:21 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/15 17:27:04 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ void first_horz_inter(t_game **cub, t_ray *ray)
     (void)ray;
     (*cub)->first_interx = (*cub)->pos_x;
     (*cub)->first_intery = (*cub)->pos_y;
-    // if (ray->facing_down)
+    if (ray->facing_down)
+        (*cub)->first_intery += 1;
     //     (*cub)->first_intery = floor((*cub)->pos_y / (*cub)->size) * (*cub)->size + (*cub)->size;
     // else
     //     (*cub)->first_intery = (floor((*cub)->pos_y / (*cub)->size) * (*cub)->size);
@@ -96,6 +97,8 @@ void first_vert_inter(t_game **cub, t_ray *ray)
     (void)ray;
     (*cub)->first_interx = (*cub)->pos_x;
     (*cub)->first_intery = (*cub)->pos_y;
+    if (ray->facing_right)
+        (*cub)->first_interx += 1;
     // if (ray->facing_right)
     //     (*cub)->first_interx = floor((*cub)->pos_x / (*cub)->size) * (*cub)->size + (*cub)->size;
     // else
@@ -119,6 +122,9 @@ void calculate_horz_step(int size, t_ray *ray, double *x, double *y)
     // if (ray->facing_up)
     //     ystep *= -1;
     
+    // if (ray->angle == 0.5 * M_PI || ray->angle == M_PI ||  ray->angle == 1.5 * M_PI || ray->angle == 2 * M_PI)
+    //     ray->angle++;
+    
     (void)size;
     xstep = cos(ray->angle);
     ystep = sin(ray->angle);
@@ -139,6 +145,8 @@ void calculate_vert_step(int size, t_ray *ray, double *x, double *y)
     //     ystep *= -1;
     // if (ray->facing_down && ystep < 0)
     //     ystep *= -1;
+    // if (ray->angle == 0.5 * M_PI || ray->angle == M_PI ||  ray->angle == 1.5 * M_PI || ray->angle == 2 * M_PI)
+    //     ray->angle++;
     (void)size;
     xstep = cos(ray->angle);
     ystep = sin(ray->angle);
@@ -157,16 +165,16 @@ void hori_hit_point(t_game **cast, t_ray *ray)
 
     double delta_x = (*cast)->first_interx;
     double delta_y = (*cast)->first_intery;
-    if (ray->facing_up)
-        delta_x--;
+    // if (ray->facing_up)
+    //     delta_x--;
     while (delta_x >= 0 && delta_x <= (*cast)->window_w &&
            delta_y >= 0 && delta_y <= (*cast)->window_h)
     {
-        // double x_to_check = delta_x;
-        // double y_to_check = delta_y;
-        // if (ray->facing_up)
-        //     y_to_check--;
-        if (is_wall(cast, delta_x, delta_y))
+        double x_to_check = delta_x;
+        double y_to_check = delta_y;
+        if (ray->facing_up)
+            y_to_check--;
+        if (is_wall(cast, x_to_check, y_to_check))
         {
             ray->found_h_hit = 1;
             ray->hit_hx = delta_x;
@@ -193,16 +201,16 @@ void vert_hit_point(t_game **cast, t_ray *ray)
 
     delta_x = (*cast)->first_interx;
     delta_y = (*cast)->first_intery;
-    if (ray->facing_left)
-        delta_x--;
+    // if (ray->facing_left)
+    //     delta_x--;
     while (delta_x >= 0 && delta_x <= (*cast)->window_w &&
            delta_y >= 0 && delta_y <= (*cast)->window_h)
     {
-        // double x_to_check = delta_x;
-        // double y_to_check = delta_y;
-        // if (ray->facing_left)
-        //     x_to_check--;
-        if (is_wall(cast, delta_x , delta_y))
+        double x_to_check = delta_x;
+        double y_to_check = delta_y;
+        if (ray->facing_left)
+            x_to_check--;
+        if (is_wall(cast, x_to_check , y_to_check))
         {
             ray->found_v_hit = 1;
             ray->hit_vx = delta_x;

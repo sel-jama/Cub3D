@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 20:35:19 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/13 23:07:20 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:58:10 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct ray
     int camera_x;
     double xplane;
     double yplane;
+    int mid;
 }t_ray;
 
 typedef struct game

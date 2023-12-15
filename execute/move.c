@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:44 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/14 15:53:03 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:44:01 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,31 +76,31 @@ int is_wall(t_game **cub, double x, double y)
         return 1;
 
     // Check for corner collisions (walls in adjacent cells)
-    int adjacent_x, adjacent_y;
+    // int adjacent_x, adjacent_y;
 
-    // Top-left corner
-    adjacent_x = (int)(x - 1) / (*cub)->size;
-    adjacent_y = (int)(y - 1) / (*cub)->size;
-    if (adjacent_x >= 0 && adjacent_y >= 0 && (*cub)->path->map[adjacent_y][adjacent_x] == '1')
-        return 1;
+    // // Top-left corner
+    // adjacent_x = (int)(x - 1) / (*cub)->size;
+    // adjacent_y = (int)(y - 1) / (*cub)->size;
+    // if (adjacent_x >= 0 && adjacent_y >= 0 && (*cub)->path->map[adjacent_y][adjacent_x] == '1')
+    //     return 1;
 
-    // Top-right corner
-    adjacent_x = (int)(x + 1) / (*cub)->size;
-    adjacent_y = (int)(y - 1) / (*cub)->size;
-    if (adjacent_x < (*cub)->cols && adjacent_y >= 0 && (*cub)->path->map[adjacent_y][adjacent_x] == '1')
-        return 1;
+    // // Top-right corner
+    // adjacent_x = (int)(x + 1) / (*cub)->size;
+    // adjacent_y = (int)(y - 1) / (*cub)->size;
+    // if (adjacent_x < (*cub)->cols && adjacent_y >= 0 && (*cub)->path->map[adjacent_y][adjacent_x] == '1')
+    //     return 1;
 
-    // Bottom-left corner
-    adjacent_x = (int)(x - 1) / (*cub)->size;
-    adjacent_y = (int)(y + 1) / (*cub)->size;
-    if (adjacent_x >= 0 && adjacent_y < (*cub)->rows && (*cub)->path->map[adjacent_y][adjacent_x] == '1')
-        return 1;
+    // // Bottom-left corner
+    // adjacent_x = (int)(x - 1) / (*cub)->size;
+    // adjacent_y = (int)(y + 1) / (*cub)->size;
+    // if (adjacent_x >= 0 && adjacent_y < (*cub)->rows && (*cub)->path->map[adjacent_y][adjacent_x] == '1')
+    //     return 1;
 
-    // Bottom-right corner
-    adjacent_x = (int)(x + 1) / (*cub)->size;
-    adjacent_y = (int)(y + 1) / (*cub)->size;
-    if (adjacent_x < (*cub)->cols && adjacent_y < (*cub)->rows && (*cub)->path->map[adjacent_y][adjacent_x] == '1')
-        return 1;
+    // // Bottom-right corner
+    // adjacent_x = (int)(x + 1) / (*cub)->size;
+    // adjacent_y = (int)(y + 1) / (*cub)->size;
+    // if (adjacent_x < (*cub)->cols && adjacent_y < (*cub)->rows && (*cub)->path->map[adjacent_y][adjacent_x] == '1')
+    //     return 1;
 
     // No collisions found
     return 0;
