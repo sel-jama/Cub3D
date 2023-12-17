@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:44 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/15 16:44:01 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/17 21:29:35 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ int is_wall(t_game **cub, double x, double y)
         return 1;
 
     // Convert coordinates to map indices
-    int map_x = (int)x / (*cub)->size;
-    int map_y = (int)y / (*cub)->size;
+    int map_x = floor(x) / (*cub)->size;
+    int map_y = floor(y) / (*cub)->size;
 
     // Check if the point is outside the map boundaries
     if (map_y >= (*cub)->rows || map_x >= (*cub)->cols)
@@ -78,7 +78,7 @@ int is_wall(t_game **cub, double x, double y)
     // Check for corner collisions (walls in adjacent cells)
     // int adjacent_x, adjacent_y;
 
-    // // Top-left corner
+    // Top-left corner
     // adjacent_x = (int)(x - 1) / (*cub)->size;
     // adjacent_y = (int)(y - 1) / (*cub)->size;
     // if (adjacent_x >= 0 && adjacent_y >= 0 && (*cub)->path->map[adjacent_y][adjacent_x] == '1')

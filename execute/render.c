@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:40 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/15 16:35:52 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/17 21:03:14 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void draw_line(void *mlx_ptr, void *win_ptr, int x0, int y0, int x1, int y1, int
 void draw_vertical_line(t_game **cub, int x, int wall_height)
 {
     t_game *game;
-    int color2 = 0x0D2333; // Red color
+    int color2 = 0xCCCCCC;
     //int bits;
     //int size_line;
     //int endian;

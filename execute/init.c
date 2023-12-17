@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:45:14 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/14 10:51:33 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/17 21:01:41 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ void initializer(t_game **cub)
 	// init->ray->radius = 3.0;
 	// init->ray->move_speed = 15;
 	// init->ray->move_step = 0;
-	init->ray->num_rays = init->window_w;
-    (*cub)->updated = 0;
+	init->ray->num_rays = init->window_w ;
 	// (*cub)->ray_array = (t_ray*)malloc(sizeof(t_ray) * init->ray->num_rays);
 	// for (int i = 0; i < init->ray->num_rays; i++)
 	// 	init_rayarray(cub ,i);
