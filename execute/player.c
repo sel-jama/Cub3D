@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 19:21:39 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/17 21:21:41 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/17 22:39:46 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void move_player(t_game **cub)
     move_step = (*cub)->ray->move_speed;
     new_x = (*cub)->pos_x + cos(move_angle) * move_step;
     new_y = (*cub)->pos_y + sin(move_angle) * move_step;
-    if (!is_wall(cub, new_x, new_y + 0.5))
+    if (!is_wall(cub, new_x + 0.5, new_y + 0.5))
     {
         (*cub)->pos_x = new_x;
         (*cub)->pos_y = new_y;
