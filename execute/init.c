@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:45:14 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/17 21:01:41 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/18 16:10:34 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void init_ray(t_game **cub)
 	// init->ray->rotation_angle = atan2(init->ray->ydir, init->ray->xdir);
 	init->ray->rotation_speed = 45 * M_PI / 180;
 	// init->ray->radius = 3.0;
-	init->ray->move_speed = 25;
+	// init->ray->move_speed = 25;
 	// init->ray->move_step = 0;
 	init->ray->num_rays = init->window_w;
 	init->ray->rotate_dir = 0;

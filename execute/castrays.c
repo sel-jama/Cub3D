@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:51 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/17 21:02:54 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/18 22:10:55 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,16 @@ void cast_rays(t_game **cast)
 {
     double ray_angle;
     int i;
+    double inc_angle;
     
     ray_angle = (*cast)->ray->rotation_angle - (FOV / 2);
+    inc_angle = FOV / (*cast)->window_w;
     i = 0;
     while (i < (*cast)->ray->num_rays)
     {
         // ray_angle = (*cast)->ray->rotation_angle - FOV / 2 + i * (FOV / (*cast)->ray->num_rays);
         cast_ray(cast, i, ray_angle);
-        // printf(">>>%f\n", ray_angle);
-        ray_angle += FOV / (*cast)->window_w;
+        ray_angle += inc_angle;
         i++;
     }
 }
@@ -79,8 +80,8 @@ int first_horz_inter(t_game **cub, t_ray *ray, double *dx, double *dy)
     *dy = floor((*cub)->pos_y / (*cub)->size) * (*cub)->size;
     if (ray->facing_down)
         *dy += (*cub)->size;
-    // else
-    //     *dy -= 0.0001;
+    else if (ray->angle == (270 * M_PI / 180))
+        *dy -= 0.0001;
     *dx = (*cub)->pos_x + (*dy - (*cub)->pos_y) * t;
     return 1;
 }
