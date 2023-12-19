@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 20:35:19 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/15 16:58:10 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/19 22:51:23 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@
 #define KEY_D 2
 #define KEY_LEFT 123
 #define KEY_RIGHT 124
-#define FOV (60 * M_PI / 180)
+#define FOV 60 * M_PI / 180
 #define TIME_LENGTH (1000 / 30)
-#define MINIMAP_S 1
+#define MINIMAP_S 0.25
 //* (PI_M / 100)
 
 typedef struct ray
@@ -149,7 +149,7 @@ int turn_player(t_game **cub);
 void draw_walls(t_game **cub, int x, double wall_height);
 void draw_vertical_line(t_game **cub, int x, int wall_height);
 void update_ray(t_game **cub);
-void move_player(t_game **cub);
+int move_player(t_game **cub);
 int	is_player(char content);
 int ft_exit(int keycode, t_game *param);
 void render_ray(t_game **cub, t_ray **r);

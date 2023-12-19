@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:48 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/14 15:54:31 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/19 22:36:56 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void get_player_pos(t_game **game, int row, int col, int a, int b)
 			b = x / s;
 			if (is_player(m[a][b]))
     		{
-        		(*game)->pos_x = x ;
-        		(*game)->pos_y = y ;
+        		(*game)->pos_x = x + 0.5;
+        		(*game)->pos_y = y + 0.5;
 				(*game)->direction = m[a][b];
 				return ;
 			}

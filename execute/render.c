@@ -6,41 +6,11 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:40 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/17 21:03:14 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/19 22:55:09 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// void put_player(t_game **cub)
-// {
-    // int radius = 1;
-    // int color = 0xFF0000;
-
-    // if ((*cub)->old_x || (*cub)->old_y)
-    // {
-
-    //     mlx_pixel_put((*cub)->mlx, (*cub)->window, (*cub)->old_x, (*cub)->old_y, 0xFFFFFF);
-    //      draw_line((*cub)->mlx, (*cub)->window, (*cub)->old_x, (*cub)->old_y, 
-    //                 (*cub)->old_x + cos((*cub)->ray->rotation_angle) * 30, (*cub)->old_y + sin((*cub)->ray->rotation_angle) * 30, 0xFFFFFF);
-    // }
-    // for (int i = -radius; i <= radius; i++)
-    // {
-    //     for (int j = -radius; j <= radius; j++)
-    //     {
-    //         // Check if the point (i, j) is inside the circle using the circle equation
-    //         if (i * i + j * j <= radius * radius)
-    //         {
-    //             int x = (*cub)->pos_x + i;
-    //             int y = (*cub)->pos_y + j;
-
-                // mlx_pixel_put((*cub)->mlx, (*cub)->window, (*cub)->pos_x, (*cub)->pos_y, color);
-                // draw_line((*cub)->mlx, (*cub)->window, (*cub)->pos_x, (*cub)->pos_y,
-                //     (*cub)->pos_x + cos((*cub)->ray->rotation_angle) * 30, (*cub)->pos_y + sin((*cub)->ray->rotation_angle) * 30,color);
-    //         }
-    //     }
-    // }
-// }
 
 void draw_line(void *mlx_ptr, void *win_ptr, int x0, int y0, int x1, int y1, int color)
 {
@@ -62,26 +32,6 @@ void draw_line(void *mlx_ptr, void *win_ptr, int x0, int y0, int x1, int y1, int
         pixls--;
     }
 }
-
-// void draw_line(void *mlx_ptr, void *win_ptr, int x0, int y0, int x1, int y1, int color)
-// {
-//     int dx = x1 - x0;
-//     int dy = y1 - y0;
-//     int steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy);
-
-//     double xIncrement = (double)dx / (double)steps;
-//     double yIncrement = (double)dy / (double)steps;
-
-//     double x = x0;
-//     double y = y0;
-
-//     for (int i = 0; i <= steps; i++)
-//     {
-//         mlx_pixel_put(mlx_ptr, win_ptr, (int)x, (int)y, color);
-//         x += xIncrement;
-//         y += yIncrement;
-//     }
-// }
 
 // void render_3dprojection(t_game **cub)
 // {
@@ -169,29 +119,17 @@ void render_ray(t_game **cub, t_ray **r)
        MINIMAP_S *ray->hit_x,  MINIMAP_S * ray->hit_y, 0xCCCCCC);
 }
 
-// void render_rays(t_game **cub)
-// {
-//     int i;
-//     i = 0;
-
-//     while (i < (*cub)->ray->num_rays)
-//     {
-//         render_ray(cub, (*cub)->ray);
-//         i++;
-//     }
-// }
-
 int render_frame(t_game *cub)
 {
-    mlx_clear_window(cub->mlx, cub->window);
     if (!update_player_pos(&cub))
         return (0);
+    mlx_clear_window(cub->mlx, cub->window);
     // init_ray(&cub);
     // render_3dprojection(&cub);
     
+    cast_rays(&cub);
     render_mini_board(&cub, cub->rows, cub->cols);
     put_player(&cub);
-    cast_rays(&cub);
     // render_rays(&cub);
     return (0);
 }

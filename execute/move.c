@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:44 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/17 21:29:35 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/19 22:52:47 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int keypress_event(int keycode, t_game *cub)
 	else if (keycode == KEY_D)
 		cub->ray->turn_dir = 1;
 	else if (keycode == KEY_LEFT)
-		cub->ray->rotate_dir -= 1;
+		cub->ray->rotate_dir = -1;
 	else if (keycode == KEY_RIGHT)
-		cub->ray->rotate_dir += 1;
+		cub->ray->rotate_dir = 1;
 	else if (keycode == 53)
 		exit(0);
 	render_frame(cub);
@@ -112,7 +112,7 @@ int update_player_pos(t_game **cub)
 	int valid_move;
 	t_ray *ray;
 
-	// valid_move = 0;
+	valid_move = 1;
 	ray = (*cub)->ray;
 	// if (ray->walk_dir == 1)
 	// 	valid_move = move_forward(cub);
@@ -123,9 +123,9 @@ int update_player_pos(t_game **cub)
 	// if (ray->turn_dir == 1)
 	// 	valid_move = move_right(cub);
 	if (ray->rotate_dir == -1 || ray->rotate_dir == 1)
-		valid_move = turn_player(cub);
+		 turn_player(cub);
 	if (ray->walk_dir || ray->turn_dir)
-		move_player(cub);
-	return (1);
+		valid_move = move_player(cub);
+	return (valid_move);
 }
 

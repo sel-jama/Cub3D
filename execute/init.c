@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:45:14 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/18 16:10:34 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/19 22:39:23 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,34 +56,13 @@ void init_ray(t_game **cub)
 	init->ray->walk_dir = 0; //y
 	// init->ray->rotation_angle = M_PI / 2;
 	// init->ray->rotation_angle = atan2(init->ray->ydir, init->ray->xdir);
-	init->ray->rotation_speed = 45 * M_PI / 180;
+	init->ray->rotation_speed = 25 * M_PI / 180;
 	// init->ray->radius = 3.0;
 	// init->ray->move_speed = 25;
 	// init->ray->move_step = 0;
 	init->ray->num_rays = init->window_w;
 	init->ray->rotate_dir = 0;
 }
-
-// void init_rayarray(t_game **cub, int i)
-// {
-// 	t_game *init;
-
-// 	init = *cub;
-// 	init->ray_array[i].turn_dir = 0; //x
-// 	init->ray_array[i].walk_dir = 0; //y
-// 	// init->ray_array[i].rotation_angle = M_PI / 2;
-// 	// init->ray->rotation_angle = atan2(init->ray->ydir, init->ray->xdir);
-// 	init->ray_array[i].rotation_speed = 45 * M_PI / 180;
-// 	// init->ray_array[i].radius = 3.0;
-// 	init->ray_array[i].move_speed = 1;
-// 	// init->ray_array[i].move_step = 0;
-// 	init->ray_array[i].num_rays = init->window_w;
-// 	// init->ray_array[i].camera_x = 2 * i / (double)init->window_w - 1;
-// 	// init->ray_array[i].xdir = init->ray_array[i].xdir + init->ray_array[i].xplane * init->ray_array[i].camera_x;
-// 	// init->ray_array[i].ydir = init->ray_array[i].ydir + init->ray_array[i].yplane * init->ray_array[i].camera_x;
-// 	// init->ray_array[i].step_x = fabs(1 / init->ray_array[i].xdir);
-// 	// init->ray_array[i].step_y = fabs(1 / init->ray_array[i].ydir);
-// }
 
 void init_dir(t_game **game)
 {
