@@ -6,13 +6,13 @@
 #    By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/25 15:57:00 by sel-jama          #+#    #+#              #
-#    Updated: 2023/12/13 22:58:30 by sel-jama         ###   ########.fr        #
+#    Updated: 2023/12/21 21:31:31 by sel-jama         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = parse/main.c execute/move.c execute/utils.c execute/castrays.c execute/render.c \
 		parse/get_next_line/get_next_line.c parse/get_next_line/get_next_line_utils.c \
-		Parse/Parse_funs.c Parse/Parse_sec_funs.c Parse/Parse_third_funs.c execute/move_utils.c \
+		Parse/Parse_funs.c Parse/Parse_sec_funs.c Parse/Parse_third_funs.c \
 		execute/init.c execute/player.c execute/cub.c execute/minimap.c
 
 OBJS = ${SRCS:.c=.o}

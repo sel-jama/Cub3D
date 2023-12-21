@@ -6,16 +6,12 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:51 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/19 22:43:09 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/21 21:15:53 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-double to_radian(double angle)
-{
-    return (angle * M_PI / 180);
-}
 void cast_rays(t_game **cast)
 {
     double ray_angle;
@@ -32,7 +28,6 @@ void cast_rays(t_game **cast)
         i++;
     }
 }
-
 
 double normalize_angle(double angle)
 {
@@ -110,18 +105,12 @@ void calculate_horz_step(int size, t_ray *ray, double *x, double *y)
     ystep = size;
     if (ray->facing_up)
         ystep *= -1;
-    // else
-    //     ystep += 0.0001;
     
     xstep = size / tan(ray->angle);
     if (ray->facing_left && xstep > 0)
         xstep *= -1;
     if (ray->facing_right && xstep < 0)
         xstep *= -1;
-    
-    // (void)size;
-    // xstep = cos(ray->angle);
-    // ystep = sin(ray->angle);
     *x = xstep;
     *y = ystep;
 }
@@ -140,10 +129,6 @@ void calculate_vert_step(int size, t_ray *ray, double *x, double *y)
     ystep = size * tan(ray->angle);
     if ((ray->facing_up && ystep > 0) || (ray->facing_down && ystep < 0))
         ystep *= -1;
-    
-    // (void)size;
-    // xstep = cos(ray->angle);
-    // ystep = sin(ray->angle);
     *x = xstep;
     *y = ystep;
 }
@@ -216,7 +201,7 @@ void closest_distance(t_game **cast, t_ray *ray)
     if (ray->found_h_hit != -1 && ray->found_h_hit == 1)
         h_dis = get_distance((*cast)->pos_x, (*cast)->pos_y, ray->hit_hx, ray->hit_hy);
 
-    if (h_dis <= v_dis)
+    if (h_dis < v_dis)
     {
         ray->hit_x = ray->hit_hx;
         ray->hit_y = ray->hit_hy;
@@ -236,21 +221,21 @@ void closest_distance(t_game **cast, t_ray *ray)
 void cast_ray(t_game **cast, int col_id, double ray_angle)
 {
     t_ray *ray;
-    (void)col_id;
-
+    double line_h;
+    
     ray = (*cast)->ray;
     init_ray_h(ray, ray_angle);
-    
-    // Horizontal intersection
     hori_hit_point(cast, ray);
-    // Vertical intersection
     init_ray_v(ray);
     vert_hit_point(cast, ray);
-    // Choose the closest intersection
     closest_distance(cast, ray);
-    //fix fisheye
-    ray->dis = ray->dis * cos(ray->angle - ray->rotation_angle);
-    double line_h = (*cast)->window_h * (*cast)->size / ray->dis;
-    draw_vertical_line(cast, col_id, line_h);
-    // render_ray(cast, &ray);
+    if (col_id > 0)
+    {
+        //fix fisheye
+        ray->dis = ray->dis * cos(ray->angle - ray->rotation_angle);
+       line_h = (*cast)->window_h * (*cast)->size / ray->dis;
+        draw_vertical_line(cast, col_id, line_h);
+        // render_ray(cast, &ray);
+    }
+    
 }

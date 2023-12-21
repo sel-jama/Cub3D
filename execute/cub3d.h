@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 20:35:19 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/19 22:51:23 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/21 20:51:04 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@
 #define KEY_RIGHT 124
 #define FOV 60 * M_PI / 180
 #define TIME_LENGTH (1000 / 30)
-#define MINIMAP_S 0.25
-//* (PI_M / 100)
+#define MINIMAP_S 1
+#define SCREEN_W 900
+#define SCREEN_H 600
 
 typedef struct ray
 {
@@ -43,41 +44,25 @@ typedef struct ray
     double hit_hy;
     double hit_vx;
     double hit_vy;
-    // double xstep;
-    // double ystep;
     double move_step;
-    
     double dis;
     double h_dis;
     double v_dis;
     int hit_is_v;
-    int wall_hit_cont;
     int turn_dir;   //-1 if left +1 if right 0 if not updated
     int walk_dir;
     double rotation_angle;
     double move_speed; //walking speed of player
     double rotation_speed;
-    // double radius;
     int num_rays;
     int facing_down;
     int facing_up;
     int facing_right;
     int facing_left;
-    // int xdir;
-    // int ydir;
-    int next_hx;
-    int next_hy;
-    int next_vx;
-    int next_vy;
     int found_h_hit;
     int found_v_hit;
-    double dis_proj_plane;
-    double proj_wall_height;
     int rotate_dir;
-    int camera_x;
-    double xplane;
-    double yplane;
-    int mid;
+    double p_dis;
 }t_ray;
 
 typedef struct game
@@ -85,9 +70,6 @@ typedef struct game
     int rows;
     int cols;
     int size;
-    int updated;
-    // double old_x;
-    // double old_y;
     double pos_x;
     double pos_y;
     int rad;
@@ -109,13 +91,7 @@ typedef struct game
     int window_h;
     char direction;
     t_ray *ray;
-    // t_ray *ray_array;
     t_path *path;
-    double first_interx;
-    double first_intery;
-    // double xstep;
-    // double ystep;
-    // uint32_t* color_buff;
 }t_game;
 
 void    start_game(t_game *cub);
@@ -145,7 +121,7 @@ void	render_mini_board(t_game **game, int row, int col);
 void init_dir(t_game **game);
 void init_rayarray(t_game **cub, int i);
 void init_ray(t_game **cub);
-int turn_player(t_game **cub);
+void turn_player(t_game **cub);
 void draw_walls(t_game **cub, int x, double wall_height);
 void draw_vertical_line(t_game **cub, int x, int wall_height);
 void update_ray(t_game **cub);
@@ -153,7 +129,5 @@ int move_player(t_game **cub);
 int	is_player(char content);
 int ft_exit(int keycode, t_game *param);
 void render_ray(t_game **cub, t_ray **r);
-
-void draw_line(void *mlx_ptr, void *win_ptr, int x0, int y0, int x1, int y1, int color);
 
 #endif

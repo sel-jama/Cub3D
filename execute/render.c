@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:40 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/19 22:55:09 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/21 02:18:39 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void draw_line(void *mlx_ptr, void *win_ptr, int x0, int y0, int x1, int y1, int
 void draw_vertical_line(t_game **cub, int x, int wall_height)
 {
     t_game *game;
-    int color2 = 0xCCCCCC;
+    int color2 = 0x00000FF0;
     //int bits;
     //int size_line;
     //int endian;
@@ -116,7 +116,7 @@ void render_ray(t_game **cub, t_ray **r)
 
     ray = *r;
     draw_line((*cub)->mlx, (*cub)->window, MINIMAP_S * (*cub)->pos_x, MINIMAP_S *(*cub)->pos_y,
-       MINIMAP_S *ray->hit_x,  MINIMAP_S * ray->hit_y, 0xCCCCCC);
+       MINIMAP_S *ray->hit_x,  MINIMAP_S * ray->hit_y, 0x0000FF);
 }
 
 int render_frame(t_game *cub)
@@ -127,9 +127,9 @@ int render_frame(t_game *cub)
     // init_ray(&cub);
     // render_3dprojection(&cub);
     
+    // render_mini_board(&cub, cub->rows, cub->cols);
+    // put_player(&cub);
     cast_rays(&cub);
-    render_mini_board(&cub, cub->rows, cub->cols);
-    put_player(&cub);
     // render_rays(&cub);
     return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:45:14 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/19 22:39:23 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/21 21:32:13 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,14 @@ void initializer(t_game **cub)
 
 void init_ray(t_game **cub)
 {
-	t_game *init;
+	t_ray *init;
 
-	init = *cub;
-	init->ray->turn_dir = 0; //x
-	init->ray->walk_dir = 0; //y
-	// init->ray->rotation_angle = M_PI / 2;
-	// init->ray->rotation_angle = atan2(init->ray->ydir, init->ray->xdir);
-	init->ray->rotation_speed = 25 * M_PI / 180;
-	// init->ray->radius = 3.0;
-	// init->ray->move_speed = 25;
-	// init->ray->move_step = 0;
-	init->ray->num_rays = init->window_w;
-	init->ray->rotate_dir = 0;
+	init = (*cub)->ray;
+	init->turn_dir = 0;
+	init->walk_dir = 0;
+	init->rotation_speed = 5 * M_PI / 180;
+	init->num_rays = (*cub)->window_w;
+	init->rotate_dir = 0;
 }
 
 void init_dir(t_game **game)
@@ -69,35 +64,12 @@ void init_dir(t_game **game)
 	t_game *p;
 
 	p = *game;
-    //if the dir is S (down)
 	if (p->direction == 'S')
-	{
-		// (*game)->ray->xdir = 0;
-		// (*game)->ray->ydir = 1;
 		(*game)->ray->rotation_angle = 90 * M_PI / 180;
-	}
-
-	//if the dir is N (Up)
 	if (p->direction == 'N')
-	{
-		// (*game)->ray->xdir = 0;
-		// (*game)->ray->ydir = -1;
 		(*game)->ray->rotation_angle = 270 * M_PI / 180;
-	}
-
-	// //if the dir is W (left)
 	if (p->direction == 'W')
-	{	
-		// (*game)->ray->xdir = 1;
-		// (*game)->ray->ydir = 0;
 		(*game)->ray->rotation_angle = 0;
-	}
-
-	// //if the dir is E (right)
 	if (p->direction == 'E')
-	{
-		// (*game)->ray->xdir = -1;
-		// (*game)->ray->ydir = 0;
 		(*game)->ray->rotation_angle = 180 * M_PI / 180;
-	}
 }

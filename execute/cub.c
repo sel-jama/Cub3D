@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:48 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/19 22:36:56 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/21 21:23:22 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,29 +37,27 @@ void get_player_pos(t_game **game, int row, int col, int a, int b)
 			b = x / s;
 			if (is_player(m[a][b]))
     		{
-        		(*game)->pos_x = x + 0.5;
-        		(*game)->pos_y = y + 0.5;
+        		(*game)->pos_x = x;
+        		(*game)->pos_y = y;
 				(*game)->direction = m[a][b];
 				return ;
 			}
 			x += s;
-			// col--;
 		}
 		col = (*game)->cols;
 		y += s;
-		// row--;
 	}
 }
 
 void    start_game(t_game *cub)
 {
     cub->mlx = mlx_init();
+    if (!cub->mlx)
+        error_ditected("Initializing mlx failed");
 	get_player_pos(&cub, cub->rows, cub->cols, 0, 0);
 	initializer(&cub);
-    if (!cub->mlx)
-        error_ditected("init failed");
-    cub->window = mlx_new_window(cub->mlx, cub->window_w,
-		cub->window_h, "Cub3D");
+    cub->window = mlx_new_window(cub->mlx, SCREEN_W,
+		SCREEN_H, "Cub3D");
 	if (!cub->window)
 		error_ditected("Failed to open window");
 	mlx_hook(cub->window, 2, 0, keypress_event, cub);

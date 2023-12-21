@@ -6,60 +6,45 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 19:21:39 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/19 22:50:44 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/21 21:07:26 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int turn_player(t_game **cub)
+void turn_player(t_game **cub)
 {
     t_ray   *r;
 
     r = (*cub)->ray;
     r->rotation_angle += r->rotate_dir * r->rotation_speed;
-//    double angle = r->rotation_angle;
-//     double cos_angle = cos(angle);
-//     double sin_angle = sin(angle);
-//     double new_x = cos_angle;
-//     double new_y = sin_angle;
-
-//     r->xdir = new_x;
-//     r->ydir = new_y;
-    // double xsaver = r->xplane;
-    // r->xplane = r->xplane * cos(r->rotation_speed) - r->yplane * sin(r->rotation_speed);
-    // r->yplane = xsaver * sin(r->rotation_speed) + r->yplane * cos(r->rotation_speed);
-
-    // (*cub)->move_step = (*cub)->walk_dir * (*cub)->move_speed;
-	// (*cub)->pos_x += cos((*cub)->ray->rotation_angle) * (*cub)->ray->move_step;
-	// (*cub)->pos_y += sin((*cub)->ray->rotation_angle) * (*cub)->ray->move_step;
-    return (1);
 }
 
 int move_player(t_game **cub)
 {
-    double move_step;
-    double new_x;
-    double new_y;
-    double move_angle;
+    // Extract relevant information from t_game and t_ray structures
+    double pos_x = (*cub)->pos_x;
+    double pos_y = (*cub)->pos_y;
+    t_ray *r = (*cub)->ray;
 
-    move_angle = (*cub)->ray->rotation_angle;
-    if ((*cub)->ray->walk_dir == 1)
-        move_angle = normalize_angle(move_angle);
-    else if ((*cub)->ray->walk_dir == -1)
+    // Adjust the movement angle based on directions
+    double move_angle = r->rotation_angle;
+    if (r->walk_dir == -1)
         move_angle = normalize_angle(move_angle + M_PI);
-    else if ((*cub)->ray->turn_dir == -1)
+    else if (r->turn_dir == -1)
         move_angle = normalize_angle(move_angle - M_PI_2);
-    else if ((*cub)->ray->turn_dir == 1)
+    else if (r->turn_dir == 1)
         move_angle = normalize_angle(move_angle + M_PI_2);
-    move_step = (*cub)->size * 0.5;
-    new_x = (*cub)->pos_x + cos(move_angle) * move_step;
-    new_y = (*cub)->pos_y + sin(move_angle) * move_step;
-    if (!is_wall(cub, new_x, new_y))
-    {
-        (*cub)->pos_x = new_x;
-        (*cub)->pos_y = new_y;
-        return (1);
-    }
-    return (0);
+
+    // Calculate the new position
+    double move_step = (*cub)->size * 0.25;
+    double new_x = pos_x + cos(move_angle) * move_step;
+    double new_y = pos_y + sin(move_angle) * move_step;
+    cast_ray(cub, -1, move_angle);
+    if (r->dis <= 16 || is_wall(cub, new_x, new_y))
+        return 0;
+    // No wall detected, update the player position
+    (*cub)->pos_x = new_x;
+    (*cub)->pos_y = new_y;
+    return 1;
 }
