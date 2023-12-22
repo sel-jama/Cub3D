@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:48 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/21 21:23:22 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/22 06:58:45 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,35 @@
 
 int	is_player(char content)
 {
-	if (content == 'N' || content == 'S' ||
-		content == 'W'|| content == 'E')
+	if (content == 'N' || content == 'S'
+		|| content == 'W' || content == 'E')
 		return (1);
 	return (0);
 }
 
-void get_player_pos(t_game **game, int row, int col, int a, int b)
+int	recored_pos(t_game **game, int x, int y, char dir)
 {
-	int	x;
-	int	y;
-	int s = (*game)->size;
-	char **m = (*game)->path->map;
+	t_game	*g;
+
+	g = *game;
+	g->pos_x = x;
+	g->pos_y = y;
+	g->direction = dir;
+	return (1);
+}
+
+int	get_player_pos(t_game **game, int row, int col, int a)
+{
+	int		x;
+	int		y;
+	int		b;
+	int		s;
+	char	**m;
 
 	y = 0;
+	b = 0;
+	m = (*game)->path->map;
+	s = (*game)->size;
 	while (row-- > 0)
 	{
 		x = 0;
@@ -36,34 +51,30 @@ void get_player_pos(t_game **game, int row, int col, int a, int b)
 			a = y / s;
 			b = x / s;
 			if (is_player(m[a][b]))
-    		{
-        		(*game)->pos_x = x;
-        		(*game)->pos_y = y;
-				(*game)->direction = m[a][b];
-				return ;
-			}
+				return (recored_pos(game, x, y, m[a][b]));
 			x += s;
 		}
 		col = (*game)->cols;
 		y += s;
 	}
+	return (0);
 }
 
-void    start_game(t_game *cub)
+void	start_game(t_game *cub)
 {
-    cub->mlx = mlx_init();
-    if (!cub->mlx)
-        error_ditected("Initializing mlx failed");
-	get_player_pos(&cub, cub->rows, cub->cols, 0, 0);
+	cub->mlx = mlx_init();
+	if (!cub->mlx)
+		error_ditected("Initializing mlx failed");
+	if (!get_player_pos(&cub, cub->rows, cub->cols, 0))
+		error_ditected("Player not found");
 	initializer(&cub);
-    cub->window = mlx_new_window(cub->mlx, SCREEN_W,
-		SCREEN_H, "Cub3D");
+	cub->window = mlx_new_window(cub->mlx, (cub)->window_w,
+			(cub)->window_h, "Cub3D");
 	if (!cub->window)
 		error_ditected("Failed to open window");
 	mlx_hook(cub->window, 2, 0, keypress_event, cub);
 	mlx_hook(cub->window, 3, 0, keyrelease, cub);
 	mlx_hook(cub->window, 17, 0, ft_exit, NULL);
 	render_frame(cub);
-	// mlx_loop_hook(cub->mlx, render_frame, cub);
 	mlx_loop(cub->mlx);
 }

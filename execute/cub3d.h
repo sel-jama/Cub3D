@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 20:35:19 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/21 20:51:04 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/22 07:15:40 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 #define KEY_LEFT 123
 #define KEY_RIGHT 124
 #define FOV 60 * M_PI / 180
-#define TIME_LENGTH (1000 / 30)
 #define MINIMAP_S 1
 #define SCREEN_W 900
 #define SCREEN_H 600
@@ -106,28 +105,24 @@ double get_distance(double x1, double x2, double y1, double y2);
 int keypress_event(int keycode, t_game *cub);
 int keyrelease(int keycode, t_game *cub);
 int is_wall(t_game **cub, double x, double y);
-void put_wall(t_game **cub, int x, int y);
-void put_floor(t_game **cub, int x, int y);
-void render_map(t_game **cub);
 int render_frame(t_game *cub);
 void put_player(t_game **cub);
-int	move_forward(t_game **cub);
-int	move_backward(t_game **cub);
-int	move_left(t_game **cub);
-int	move_right(t_game **cub);
 int update_player_pos(t_game **cub);
-void	image_renderer(char map_case, int x, int y, t_game **s);
 void	render_mini_board(t_game **game, int row, int col);
 void init_dir(t_game **game);
-void init_rayarray(t_game **cub, int i);
-void init_ray(t_game **cub);
 void turn_player(t_game **cub);
-void draw_walls(t_game **cub, int x, double wall_height);
 void draw_vertical_line(t_game **cub, int x, int wall_height);
-void update_ray(t_game **cub);
 int move_player(t_game **cub);
 int	is_player(char content);
 int ft_exit(int keycode, t_game *param);
 void render_ray(t_game **cub, t_ray **r);
+void closest_distance(t_game **cast, t_ray *ray);
+int first_horz_inter(t_game **cub, t_ray *ray, double *dx, double *dy);
+int first_vert_inter(t_game **cub, t_ray *ray, double *dx, double *dy);
+void calculate_horz_step(int size, t_ray *ray, double *x, double *y);
+void calculate_vert_step(int size, t_ray *ray, double *x, double *y);
+void init_ray(t_game **cub);
+
+void draw_line(void *mlx_ptr, void *win_ptr, int x0, int y0, int x1, int y1, int color);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:45:14 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/21 21:32:13 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/22 03:21:55 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void init_ray(t_game **cub)
 	init = (*cub)->ray;
 	init->turn_dir = 0;
 	init->walk_dir = 0;
-	init->rotation_speed = 5 * M_PI / 180;
+	init->rotation_speed = 20 * M_PI / 180;
 	init->num_rays = (*cub)->window_w;
 	init->rotate_dir = 0;
 }

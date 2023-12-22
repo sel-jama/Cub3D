@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 19:45:01 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/21 21:32:37 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/22 03:15:52 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,34 +60,34 @@ void	render_mini_board(t_game **game, int row, int col)
 	}
 }
 
-// void put_player(t_game **cub)
-// {
-//     int radius = 2;
-//     int color = 0xFF0000;
-//     int i;
-//     int j;
-//     int x;
-//     int y;
-//     int flag = 0;
+void put_player(t_game **cub)
+{
+    int radius = 2;
+    int color = 0xFF0000;
+    int i;
+    int j;
+    int x;
+    int y;
+    int flag = 0;
 
-//     for (i = -radius; i <= radius; i++)
-//     {
-//         for (j = -radius; j <= radius; j++)
-//         {
-//             // Check if the point (i, j) is inside the circle using the circle equation
-//             if (i * i + j * j <= radius * radius)
-//             {
-//                 x = (*cub)->pos_x * MINIMAP_S + i;
-//                 y = (*cub)->pos_y * MINIMAP_S + j;
+    for (i = -radius; i <= radius; i++)
+    {
+        for (j = -radius; j <= radius; j++)
+        {
+            // Check if the point (i, j) is inside the circle using the circle equation
+            if (i * i + j * j <= radius * radius)
+            {
+                x = (*cub)->pos_x * MINIMAP_S + i;
+                y = (*cub)->pos_y * MINIMAP_S + j;
     
-//                 mlx_pixel_put((*cub)->mlx, (*cub)->window, x, y, color);
-//                 if (!flag)
-//                 {
-//                     flag = 1;
-//                     draw_line((*cub)->mlx, (*cub)->window, x, y,
-//                         x + cos(((*cub)->ray->rotation_angle)) * 15, y + sin(((*cub)->ray->rotation_angle)) * 15, color);
-//                 }
-//             }
-//         }
-//     }
-// }
+                mlx_pixel_put((*cub)->mlx, (*cub)->window, x, y, color);
+                if (!flag)
+                {
+                    flag = 1;
+                    draw_line((*cub)->mlx, (*cub)->window, x, y,
+                        x + cos(((*cub)->ray->rotation_angle)) * 15, y + sin(((*cub)->ray->rotation_angle)) * 15, color);
+                }
+            }
+        }
+    }
+}
