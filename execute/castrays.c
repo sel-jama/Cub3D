@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:51 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/22 23:14:26 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/23 09:15:12 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	cast_ray(t_game **cast, int col_id, double ray_angle)
 {
 	t_ray	*ray;
 	double	line_h;
+	(void)col_id;
 
 	ray = (*cast)->ray;
 	init_ray_h(ray, ray_angle);
@@ -103,6 +104,6 @@ void	cast_ray(t_game **cast, int col_id, double ray_angle)
 		ray->dis = ray->dis * cos(ray->angle - ray->rotation_angle);
 		line_h = (*cast)->window_h * (*cast)->size / ray->dis;
 		draw_vertical_line(cast, col_id, line_h);
-		// render_ray(cast, &ray);
+		// render_ray(cast, &ray);	 
 	}
 }

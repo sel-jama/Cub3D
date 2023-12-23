@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 07:02:32 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/22 23:23:20 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/23 09:24:34 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,28 +43,34 @@ void	closest_distance(t_game **cast, t_ray *ray)
 
 int	first_horz_inter(t_game **cub, t_ray *ray, double *dx, double *dy)
 {
-	*dy = floor((*cub)->pos_y / (*cub)->size) * (*cub)->size;
-	if (ray->facing_down)
-		*dy += (*cub)->size;
-	if (ray->angle == 2 * M_PI || ray->angle == M_PI)
+    double  epsilon;
+
+    epsilon = 1e-3;
+	if (fabs(ray->angle - 2 * M_PI) < epsilon || fabs(ray->angle - M_PI) < epsilon)
 	{
 		ray->found_h_hit = -1;
 		return (0);
 	}
+	*dy = floor((*cub)->pos_y / 32) * 32;
+	if (ray->facing_down)
+		*dy += 32;
 	*dx = (*cub)->pos_x + (*dy - (*cub)->pos_y) / tan(ray->angle);
 	return (1);
 }
 
 int	first_vert_inter(t_game **cub, t_ray *ray, double *dx, double *dy)
 {
-	*dx = floor((*cub)->pos_x / (*cub)->size) * (*cub)->size;
-	if (ray->facing_right)
-		*dx += (*cub)->size;
-	if (ray->angle == (1.5 * M_PI) || ray->angle == 0.5 * M_PI)
+    double  epsilon;
+
+    epsilon = 1e-3;
+	if (fabs(ray->angle - (1.5 * M_PI)) < epsilon || fabs(ray->angle - 0.5 * M_PI) < epsilon)
 	{
 		ray->found_v_hit = -1;
 		return (0);
 	}
+	*dx = floor((*cub)->pos_x / 32) * 32;
+	if (ray->facing_right)
+		*dx += 32;
 	*dy = (*cub)->pos_y + (*dx - (*cub)->pos_x) * tan(ray->angle);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:40 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/22 23:37:03 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/23 09:15:27 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void render_ray(t_game **cub, t_ray **r)
 
     ray = *r;
     draw_line((*cub)->mlx, (*cub)->window, MINIMAP_S * (*cub)->pos_x, MINIMAP_S *(*cub)->pos_y,
-       MINIMAP_S *ray->hit_x,  MINIMAP_S * ray->hit_y, 0x0000FF);
+       MINIMAP_S *ray->hit_x,  MINIMAP_S * ray->hit_y, 0xCCCCCC);
 }
 
 int render_frame(t_game *cub)
@@ -86,4 +86,3 @@ int render_frame(t_game *cub)
     cast_rays(&cub);
     return (0);
 }
-

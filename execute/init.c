@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:45:14 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/22 23:45:07 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/23 06:44:20 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	init_dir(t_game **game)
 	if (p->direction == 'N')
 		(*game)->ray->rotation_angle = 270 * M_PI / 180;
 	if (p->direction == 'W')
-		(*game)->ray->rotation_angle = 0;
+		(*game)->ray->rotation_angle = 360 * M_PI / 180;
 	if (p->direction == 'E')
 		(*game)->ray->rotation_angle = 180 * M_PI / 180;
 }

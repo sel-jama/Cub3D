@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:48 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/22 06:58:45 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/23 09:16:29 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	recored_pos(t_game **game, int x, int y, char dir)
 	t_game	*g;
 
 	g = *game;
-	g->pos_x = x;
-	g->pos_y = y;
+	g->pos_x = x + 0.5;
+	g->pos_y = y + 0.5;
 	g->direction = dir;
 	return (1);
 }
@@ -68,8 +68,8 @@ void	start_game(t_game *cub)
 	if (!get_player_pos(&cub, cub->rows, cub->cols, 0))
 		error_ditected("Player not found");
 	initializer(&cub);
-	cub->window = mlx_new_window(cub->mlx, (cub)->window_w,
-			(cub)->window_h, "Cub3D");
+	cub->window = mlx_new_window(cub->mlx, SCREEN_W,
+			SCREEN_H, "Cub3D");
 	if (!cub->window)
 		error_ditected("Failed to open window");
 	mlx_hook(cub->window, 2, 0, keypress_event, cub);
