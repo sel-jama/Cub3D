@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:44 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/24 07:05:28 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/24 13:37:34 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ int	is_wall(t_game **cub, double x, double y)
 	map_x = floor(x) / 32;
 	map_y = floor(y) / 32;
 	if (map_y >= (*cub)->rows || map_x >= (*cub)->cols)
+		return (1);
+	if ((*cub)->path->map[map_y]
+		&& (size_t)map_x >= ft_strlen((*cub)->path->map[map_y]))
 		return (1);
 	if ((*cub)->path->map[map_y][map_x] == '1')
 		return (1);

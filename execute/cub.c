@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:48 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/24 07:05:07 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/24 11:34:05 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	recored_pos(t_game **game, int x, int y, char dir)
 	t_game	*g;
 
 	g = *game;
-	g->pos_x = x + 0.5;
-	g->pos_y = y + 0.5;
+	g->pos_x = x;
+	g->pos_y = y;
 	g->direction = dir;
 	return (1);
 }
@@ -46,7 +46,7 @@ int	get_player_pos(t_game **game, int row, int col, int a)
 	while (row-- > 0)
 	{
 		x = 0;
-		while (col-- > 0)
+		while (m[y / s][x / s])
 		{
 			a = y / s;
 			b = x / s;

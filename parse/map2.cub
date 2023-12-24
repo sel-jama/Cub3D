@@ -1,10 +1,10 @@
-NO       ./xpms/walls/ressalhi1.xpm    
-WE      ./xpms/walls/ressalhi3.xpm    
-EA     ./xpms/walls/ressalhi4.xpm      
+NO execute/1.xpm
+WE execute/3.xpm
+EA execute/4.xpm      
 
 C  0, 255, 255
 F  0, 128, 0 
-SO      ./xpms/walls/ressalhi2.xpm   
+SO execute/2.xpm
 
                                         11111
                                        100S001

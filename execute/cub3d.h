@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 20:35:19 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/24 07:25:32 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/24 13:30:38 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 # define KEY_RIGHT 124
 # define FOV 60
 # define MINIMAP_S 1
-# define SCREEN_W 1000
-# define SCREEN_H 400
+# define SCREEN_W 800
+# define SCREEN_H 600
 
 typedef struct ray
 {

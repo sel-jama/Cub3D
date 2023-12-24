@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:45:14 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/24 07:04:44 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/24 11:16:30 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	initializer(t_game **cub)
 	init->j1 = 0;
 	init->tmp2 = 0;
 	init->wall_heigth = 0;
-	init->ray->num_rays = init->window_w;
 }
 
 void	init_ray(t_game **cub)
@@ -43,7 +42,7 @@ void	init_ray(t_game **cub)
 	init->turn_dir = 0;
 	init->walk_dir = 0;
 	init->rotation_speed = 10 * M_PI / 180;
-	init->num_rays = (*cub)->window_w;
+	init->num_rays = SCREEN_W;
 	init->rotate_dir = 0;
 }
 

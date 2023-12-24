@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yboucha <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 00:06:54 by yboucha           #+#    #+#             */
-/*   Updated: 2023/12/24 00:11:00 by yboucha          ###   ########.fr       */
+/*   Updated: 2023/12/24 13:39:49 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../execute/cub3d.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 int	c_main(t_path *load, char *ptr, char *av[], int n)
 {
@@ -64,6 +63,28 @@ void	c_main2(t_path *load, char *ptr, char *av[], int n)
 	check_map(load->map, n - 1);
 }
 
+void	count_rows_c(t_path *load, t_game *cub)
+{
+	int	i;
+	int	j;
+	int	t;
+
+	i = 0;
+	j = 0;
+	t = 0;
+	while (load->map[i])
+	{
+		if (j > t)
+			t = j;
+		j = 0;
+		while (load->map[i][j])
+			j++;
+		i++;
+	}
+	cub->rows = i;
+	cub->cols = t;
+}
+
 int	main(int ac, char *av[])
 {
 	t_game	cub;
@@ -87,7 +108,6 @@ int	main(int ac, char *av[])
 	else
 		ft_errors();
 	cub.size = 32;
-	cub.rows = 14;
-	cub.cols = 33;
+	count_rows_c(&load, &cub);
 	start_game(&cub);
 }

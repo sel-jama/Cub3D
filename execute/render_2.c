@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yboucha <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 06:17:44 by yboucha           #+#    #+#             */
-/*   Updated: 2023/12/24 06:20:53 by yboucha          ###   ########.fr       */
+/*   Updated: 2023/12/24 11:12:06 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	draw_f(int y_end, t_game **cub, int x)
 	game = *cub;
 	p = game->path;
 	floor = p->f * 256 * 256 + p->f2 * 256 + p->f3;
-	while (j < game->window_h)
+	while (j < SCREEN_H)
 	{
 		mlx_pixel_put(game->mlx, game->window, x, j, floor);
 		j++;
@@ -94,7 +94,7 @@ void	draw_vertical_line(t_game **cub, int x, int wall_height)
 	draw_v2(cub);
 	game->addr = mlx_get_data_addr(game->img2, &game->bits_per_pixel1,
 			&game->line_length1, &game->endian1);
-	game->y_start = (game->window_h - wall_height) / 2;
+	game->y_start = (SCREEN_H - wall_height) / 2;
 	game->y_end = game->y_start + wall_height;
 	xgame = (game->j1 * fmod(game->ray->hit_x + game->ray->hit_y,
 				game->size)) / game->size;

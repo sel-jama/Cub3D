@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:51 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/24 07:26:26 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/24 11:32:15 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	cast_rays(t_game **cast)
 
 	h_fov = 30 * M_PI / 180;
 	ray_angle = (*cast)->ray->rotation_angle - h_fov;
-	inc_angle = (FOV * M_PI / 180) / (*cast)->window_w;
-	dis_proj = SCREEN_W / 2 / tan(h_fov);
+	inc_angle = (FOV * M_PI / 180) / SCREEN_W;
+	dis_proj = (SCREEN_W / 2) / tan(h_fov);
 	i = 0;
 	while (i < (*cast)->ray->num_rays)
 	{
