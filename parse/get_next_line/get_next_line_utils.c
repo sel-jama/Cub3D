@@ -6,11 +6,11 @@
 /*   By: yboucha <yboucha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 05:14:36 by yboucha           #+#    #+#             */
-/*   Updated: 2022/12/15 05:52:53 by yboucha          ###   ########.fr       */
+/*   Updated: 2023/12/24 06:30:37 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"get_next_line.h"
+#include "get_next_line.h"
 
 int	ft_strch(const char *s, int c)
 {

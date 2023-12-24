@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:51 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/23 09:15:12 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/24 07:26:26 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,17 @@ void	cast_rays(t_game **cast)
 	double	ray_angle;
 	int		i;
 	double	inc_angle;
+	double	dis_proj;
+	double	h_fov;
 
-	ray_angle = (*cast)->ray->rotation_angle - (FOV / 2);
-	inc_angle = FOV / (*cast)->window_w;
+	h_fov = 30 * M_PI / 180;
+	ray_angle = (*cast)->ray->rotation_angle - h_fov;
+	inc_angle = (FOV * M_PI / 180) / (*cast)->window_w;
+	dis_proj = SCREEN_W / 2 / tan(h_fov);
 	i = 0;
 	while (i < (*cast)->ray->num_rays)
 	{
-		cast_ray(cast, i, ray_angle);
+		cast_ray(cast, i, ray_angle, dis_proj);
 		ray_angle += inc_angle;
 		i++;
 	}
@@ -87,11 +91,9 @@ void	vert_hit_point(t_game **cast, t_ray *ray)
 	}
 }
 
-void	cast_ray(t_game **cast, int col_id, double ray_angle)
+void	cast_ray(t_game **cast, int col_id, double ray_angle, double dis_pj)
 {
 	t_ray	*ray;
-	double	line_h;
-	(void)col_id;
 
 	ray = (*cast)->ray;
 	init_ray_h(ray, ray_angle);
@@ -102,8 +104,7 @@ void	cast_ray(t_game **cast, int col_id, double ray_angle)
 	if (col_id > 0)
 	{
 		ray->dis = ray->dis * cos(ray->angle - ray->rotation_angle);
-		line_h = (*cast)->window_h * (*cast)->size / ray->dis;
-		draw_vertical_line(cast, col_id, line_h);
-		// render_ray(cast, &ray);	 
+		(*cast)->wall_heigth = dis_pj * 32 / ray->dis;
+		draw_vertical_line(cast, col_id, (*cast)->wall_heigth);
 	}
 }

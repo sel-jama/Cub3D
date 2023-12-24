@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 23:56:33 by sel-jama          #+#    #+#             */
-/*   Updated: 2022/10/27 21:38:39 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/24 07:29:26 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}t_list;
+}	t_list;
 int		ft_isdigit(int c);
 int		ft_isprint(int c);
 int		ft_isalnum(int c);

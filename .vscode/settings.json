@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "cube.h": "c",
+        "float.h": "c",
+        "limits.h": "c",
+        "fcntl.h": "c"
+    }
+}

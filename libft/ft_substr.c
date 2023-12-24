@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 13:34:12 by sel-jama          #+#    #+#             */
-/*   Updated: 2022/11/01 00:15:34 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/24 07:28:29 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (start > ft_strlen(s))
 		return (ft_strdup(""));
 	if (len > ft_strlen(s))
-			len = ft_strlen(s) - start;
+		len = ft_strlen(s) - start;
 	else if (start + len > ft_strlen(s))
-			len = len - 1;
+		len = len - 1;
 	subs = (char *)malloc(sizeof(char) * (len + 1));
 	if (!subs)
 		return (NULL);

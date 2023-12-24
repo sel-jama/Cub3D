@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 07:02:32 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/23 09:24:34 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/24 06:58:53 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,11 @@ void	closest_distance(t_game **cast, t_ray *ray)
 
 int	first_horz_inter(t_game **cub, t_ray *ray, double *dx, double *dy)
 {
-    double  epsilon;
+	double	epsilon;
 
-    epsilon = 1e-3;
-	if (fabs(ray->angle - 2 * M_PI) < epsilon || fabs(ray->angle - M_PI) < epsilon)
+	epsilon = 1e-3;
+	if (fabs(ray->angle - 2 * M_PI) < epsilon
+		|| fabs(ray->angle - M_PI) < epsilon)
 	{
 		ray->found_h_hit = -1;
 		return (0);
@@ -60,10 +61,11 @@ int	first_horz_inter(t_game **cub, t_ray *ray, double *dx, double *dy)
 
 int	first_vert_inter(t_game **cub, t_ray *ray, double *dx, double *dy)
 {
-    double  epsilon;
+	double	epsilon;
 
-    epsilon = 1e-3;
-	if (fabs(ray->angle - (1.5 * M_PI)) < epsilon || fabs(ray->angle - 0.5 * M_PI) < epsilon)
+	epsilon = 1e-3;
+	if (fabs(ray->angle - (1.5 * M_PI)) < epsilon
+		|| fabs(ray->angle - 0.5 * M_PI) < epsilon)
 	{
 		ray->found_v_hit = -1;
 		return (0);

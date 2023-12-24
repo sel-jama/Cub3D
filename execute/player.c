@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 19:21:39 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/22 23:35:52 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/24 07:20:06 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ int	move_player(t_game **cub)
 		move_angle = normalize_angle(move_angle - M_PI_2);
 	else if (r->turn_dir == 1)
 		move_angle = normalize_angle(move_angle + M_PI_2);
-	move_step = (*cub)->size * 0.25;
+	move_step = (*cub)->size * 0.5;
 	new_x = (*cub)->pos_x + cos(move_angle) * move_step;
 	new_y = (*cub)->pos_y + sin(move_angle) * move_step;
-	cast_ray(cub, -1, move_angle);
-	if (r->dis <= 16 || is_wall(cub, new_x, new_y))
+	cast_ray(cub, -1, move_angle, 0);
+	if (r->dis <= 32 || is_wall(cub, new_x, new_y))
 		return (0);
 	(*cub)->pos_x = new_x;
 	(*cub)->pos_y = new_y;
