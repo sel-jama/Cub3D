@@ -43,14 +43,19 @@ int	parametere_map2(char *ptr, t_path **load, char *str, int i)
 	{
 		if ((ptr[i + 1] == 9 || ptr[i + 1] == 32) && ptr[i + 2])
 		{
-			str = ft_strtrim(ptr + (i + 2), "     ");
+			char *tmp = (ptr + (i + 2));
+			str = ft_strtrim(tmp, "  ");
 			if (ptr[i] == 'F')
-				//free ptr
+			{
+				free(ptr);
 				ptr = ft_strjoin("F ", str);
+			}
 			else
-				//free ptr
+			{
+				free (ptr);
 				ptr = ft_strjoin("C ", str);
-			//free str
+			}
+			free(str);
 			load_identifier(ptr, 2, &(*load));
 			return (1);
 		}
@@ -59,10 +64,11 @@ int	parametere_map2(char *ptr, t_path **load, char *str, int i)
 	{
 		if ((ptr[i + 2] == 9 || ptr[i + 2] == 32) && ptr[i + 3])
 		{
-			str = ft_strtrim(ptr + 3, " ");
-			//free ptr
+			char *tmp = (ptr + (i + 3));
+			str = ft_strtrim(tmp, " ");
+			free (ptr);
 			ptr = ft_strjoin("NO ", str);
-			//free str
+			free (str);
 			load_identifier(ptr, 3, &(*load));
 			return (1);
 		}
@@ -76,10 +82,11 @@ int	parametere_map3(char *ptr, t_path **load, char *str, int i)
 	{
 		if ((ptr[i + 2] == 9 || ptr[i + 2] == 32) && ptr[i + 3])
 		{
-			str = ft_strtrim(ptr + 3, " ");
-			//free ptr
+			char *tmp = (ptr + (i + 3));
+			str = ft_strtrim(tmp, " ");
+			free (ptr);
 			ptr = ft_strjoin("SO ", str);
-			//free str
+			free (str);
 			load_identifier(ptr, 3, &(*load));
 			return (1);
 		}
@@ -88,10 +95,11 @@ int	parametere_map3(char *ptr, t_path **load, char *str, int i)
 	{
 		if ((ptr[i + 2] == 9 || ptr[i + 2] == 32) && ptr[i + 3])
 		{
-			str = ft_strtrim(ptr + 3, " ");
-			//free ptr
+			char *tmp = (ptr + (i + 3));
+			str = ft_strtrim(tmp, " ");
+			free (ptr);
 			ptr = ft_strjoin("WE ", str);
-			//free str
+			free (str);
 			load_identifier(ptr, 3, &(*load));
 			return (1);
 		}
@@ -117,9 +125,9 @@ int	parametre_map(char *ptr, t_path **load_2)
 			if ((ptr[i + 2] == 9 || ptr[i + 2] == 32) && ptr[i + 3])
 			{
 				str = ft_strtrim(ptr + 3, " ");
-				//free ptr
+				free(ptr);
 				ptr = ft_strjoin("EA ", str);
-				//free str
+				free(str);
 				load_identifier(ptr, 3, &(*load_2));
 				return (1);
 			}

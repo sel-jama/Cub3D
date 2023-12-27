@@ -10,23 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cube.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "../execute/cub3d.h"
 
 char	*load_identifier_3(char *str, char *ptr)
 {
-	str = malloc(sizeof(char) * ft_strlen(ptr + 2) + 1);
-	ft_strlcpy(str, ptr + 3, ft_strlen(ptr) - 3);
-	//free str here
+	char *tmp = NULL;
+	char *tmp2 = NULL;
+	tmp = ptr + 3;
+	str = malloc(sizeof(char) * ft_strlen(ptr + 3) + 1);
+	ft_strlcpy(str, tmp, ft_strlen(ptr) - 3);
+	// free(str);
+	// free(str);
+	// printf("%s\n", str);
+	tmp2 = ft_strtrim(str, "   ");
 	free(str);
-	str = ft_strtrim(str, "   ");
-	return (str);
+	return (tmp2);
 }
 
 void	load_identifier_4(char *ptr, char **vpr, t_path **tmp, char *str)
 {
 	(void)str;
+	char *tmp2 = NULL;
 	if (ptr[0] == 'F' || ptr[0] == 'C')
 	{
 		if (ptr[0] == 'F')
@@ -36,9 +40,21 @@ void	load_identifier_4(char *ptr, char **vpr, t_path **tmp, char *str)
 				|| ft_strlen(vpr[2]) > 11)
 				ft_errors();
 			//free here 3 times
-			(*tmp)->f = ft_atoi(ft_strtrim(vpr[0], " "));
-			(*tmp)->f2 = ft_atoi(ft_strtrim(vpr[1], " "));
-			(*tmp)->f3 = ft_atoi(ft_strtrim(vpr[2], " "));
+			tmp2 = ft_strtrim(vpr[0], " ");
+			(*tmp)->f = ft_atoi(tmp2);
+			free(tmp2);
+			tmp2 = ft_strtrim(vpr[1], " ");
+			(*tmp)->f2 = ft_atoi(tmp2);
+			free(tmp2);
+			tmp2 = ft_strtrim(vpr[2], " ");
+			(*tmp)->f3 = ft_atoi(tmp2);
+			free(tmp2);
+			// clean_up(vpr);
+			// free(vpr[0]);
+			// free(vpr[1]);
+			// free(vpr[2]);
+			// free(vpr[3]);
+			// free(vpr);
 		}
 		else
 		{
@@ -47,11 +63,25 @@ void	load_identifier_4(char *ptr, char **vpr, t_path **tmp, char *str)
 				|| ft_strlen(vpr[2]) > 11)
 				ft_errors();
 			//free here 3 times
-			(*tmp)->c = ft_atoi(ft_strtrim(vpr[0], " "));
-			(*tmp)->c2 = ft_atoi(ft_strtrim(vpr[1], " "));
-			(*tmp)->c3 = ft_atoi(ft_strtrim(vpr[2], " "));
+			tmp2 = ft_strtrim(vpr[0], " ");
+			(*tmp)->c = ft_atoi(tmp2);
+			free(tmp2);
+			tmp2 = ft_strtrim(vpr[1], " ");
+			(*tmp)->c2 = ft_atoi(tmp2);
+			free(tmp2);
+			tmp2 = ft_strtrim(vpr[2], " ");
+			(*tmp)->c3 = ft_atoi(tmp2);
+			free(tmp2);
+			// free(vpr[0]);
+			// free(vpr[1]);
+			// free(vpr[2]);
+			// free(vpr[3]);
+			// free(vpr[4]);
+			// free(vpr);
 		}
 	}
+	if (vpr)
+		clean_up(vpr);
 	//free vpr
 }
 
@@ -73,8 +103,6 @@ void	load_identifier_5h(char *str, char *ptr, t_path **tmp, int j)
 		else
 			ft_errors();
 	}
-	//free str
-	//free ptr
 }
 
 void	load_identifier_5(char *str, char *ptr, t_path **tmp)
@@ -124,4 +152,5 @@ void	load_identifier(char *ptr, int start, t_path **load)
 		load_identifier_4(ptr, vpr, load, str);
 		load_identifier_5(str, ptr, &tmp);
 	}
+	free(ptr);
 }

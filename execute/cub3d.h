@@ -121,6 +121,6 @@ int		first_vert_inter(t_game **cub, t_ray *ray, double *dx, double *dy);
 void	calculate_horz_step(int size, t_ray *ray, double *x, double *y);
 void	calculate_vert_step(int size, t_ray *ray, double *x, double *y);
 void	init_ray(t_game **cub);
-void	clean_up(t_game **param);
+void	clean_up(char **map);
 
 #endif

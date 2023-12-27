@@ -20,18 +20,16 @@ int	render_frame(t_game *cub)
 	cast_rays(&cub);
 	return (0);
 }
-void	clean_up(t_game **param)
+void	clean_up(char **map)
 {
 	int	i;
-	char	**map;
 
 	i = 0;
-	map = (*param)->path->map;
 	while (map[i])
 	{
 		free(map[i]);
 		i++;
 	}
-	map = NULL;
+	free(map);
 	// mlx_destroy_window((*param)->mlx, (*param)->window);
 }

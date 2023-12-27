@@ -23,16 +23,23 @@ int	c_main(t_path *load, char *ptr, char *av[], int n)
 	{
 		ptr = get_next_line(j);
 		if (!ptr)
-			break ;
+		{
+			free(ptr);
+			break;
+		}
 		if (empty_line(ptr) == 1)
+		{
+			free(ptr);
 			n += 1;
+		}
 		if (load->no && load->so && load->we && load->ea && load->f && load->c)
 		{
 			free(ptr);
 			break ;
 		}
-		free(ptr);
 	}
+	if(ptr)
+		free(ptr);
 	return (n);
 }
 
@@ -50,11 +57,15 @@ void	c_main2(t_path *load, char *ptr, char *av[], int n)
 	{
 		ptr = get_next_line(t);
 		if (ptr == NULL)
+		{
+			free(ptr);
 			break ;
+		}
 		if (parametre_map(ptr, &load) == 0 && empty_line(ptr) == 1)
 		{
-			load->map[n] = malloc(sizeof(char) * (ft_strlen(ptr) + 1));
+			// load->map[n] = malloc(sizeof(char) * (ft_strlen(ptr) + 1));
 			load->map[n] = ptr;
+			// free(ptr);
 			n += 1;
 		}
 	}
