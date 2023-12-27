@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 00:06:54 by yboucha           #+#    #+#             */
-/*   Updated: 2023/12/24 13:39:49 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/27 13:43:04 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	c_main(t_path *load, char *ptr, char *av[], int n)
 			free(ptr);
 			break;
 		}
+		else if (empty_line(ptr) == 0)
+			free(ptr);
 		if (empty_line(ptr) == 1)
 		{
 			free(ptr);
@@ -58,8 +60,11 @@ void	c_main2(t_path *load, char *ptr, char *av[], int n)
 		ptr = get_next_line(t);
 		if (ptr == NULL)
 		{
-			free(ptr);
 			break ;
+		}
+		else if (empty_line(ptr) == 0)
+		{
+			free(ptr);
 		}
 		if (parametre_map(ptr, &load) == 0 && empty_line(ptr) == 1)
 		{

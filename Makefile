@@ -6,7 +6,7 @@
 #    By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/25 15:57:00 by sel-jama          #+#    #+#              #
-#    Updated: 2023/12/24 13:14:39 by sel-jama         ###   ########.fr        #
+#    Updated: 2023/12/27 11:11:31 by sel-jama         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ OBJS = ${SRCS:.c=.o}
 
 CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 
-NAME = cub3d
+NAME = cub3D
 
 HEADER = execute/cub3d.h
 
