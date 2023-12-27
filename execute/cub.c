@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:48 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/24 13:51:40 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/26 13:46:14 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	start_game(t_game *cub)
 		error_ditected("Failed to open window");
 	mlx_hook(cub->window, 2, 0, keypress_event, cub);
 	mlx_hook(cub->window, 3, 0, keyrelease, cub);
-	mlx_hook(cub->window, 17, 0, ft_exit, NULL);
+	mlx_hook(cub->window, 17, 0, ft_exit, cub);
 	render_frame(cub);
 	mlx_loop(cub->mlx);
 }

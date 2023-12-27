@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parse_funs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yboucha <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 23:46:35 by yboucha           #+#    #+#             */
-/*   Updated: 2023/12/24 00:06:26 by yboucha          ###   ########.fr       */
+/*   Updated: 2023/12/26 13:19:05 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,12 @@ int	parametere_map2(char *ptr, t_path **load, char *str, int i)
 		{
 			str = ft_strtrim(ptr + (i + 2), "     ");
 			if (ptr[i] == 'F')
+				//free ptr
 				ptr = ft_strjoin("F ", str);
 			else
+				//free ptr
 				ptr = ft_strjoin("C ", str);
+			//free str
 			load_identifier(ptr, 2, &(*load));
 			return (1);
 		}
@@ -57,7 +60,9 @@ int	parametere_map2(char *ptr, t_path **load, char *str, int i)
 		if ((ptr[i + 2] == 9 || ptr[i + 2] == 32) && ptr[i + 3])
 		{
 			str = ft_strtrim(ptr + 3, " ");
+			//free ptr
 			ptr = ft_strjoin("NO ", str);
+			//free str
 			load_identifier(ptr, 3, &(*load));
 			return (1);
 		}
@@ -72,7 +77,9 @@ int	parametere_map3(char *ptr, t_path **load, char *str, int i)
 		if ((ptr[i + 2] == 9 || ptr[i + 2] == 32) && ptr[i + 3])
 		{
 			str = ft_strtrim(ptr + 3, " ");
+			//free ptr
 			ptr = ft_strjoin("SO ", str);
+			//free str
 			load_identifier(ptr, 3, &(*load));
 			return (1);
 		}
@@ -82,7 +89,9 @@ int	parametere_map3(char *ptr, t_path **load, char *str, int i)
 		if ((ptr[i + 2] == 9 || ptr[i + 2] == 32) && ptr[i + 3])
 		{
 			str = ft_strtrim(ptr + 3, " ");
+			//free ptr
 			ptr = ft_strjoin("WE ", str);
+			//free str
 			load_identifier(ptr, 3, &(*load));
 			return (1);
 		}
@@ -108,7 +117,9 @@ int	parametre_map(char *ptr, t_path **load_2)
 			if ((ptr[i + 2] == 9 || ptr[i + 2] == 32) && ptr[i + 3])
 			{
 				str = ft_strtrim(ptr + 3, " ");
+				//free ptr
 				ptr = ft_strjoin("EA ", str);
+				//free str
 				load_identifier(ptr, 3, &(*load_2));
 				return (1);
 			}

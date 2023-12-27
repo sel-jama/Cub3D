@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 20:35:19 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/25 02:43:24 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/26 13:44:48 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
 # define FOV 60
-# define MINIMAP_S 1
-# define SCREEN_W 800
-# define SCREEN_H 600
+# define SCREEN_W 700
+# define SCREEN_H 500
 
 typedef struct ray
 {
@@ -122,5 +121,6 @@ int		first_vert_inter(t_game **cub, t_ray *ray, double *dx, double *dy);
 void	calculate_horz_step(int size, t_ray *ray, double *x, double *y);
 void	calculate_vert_step(int size, t_ray *ray, double *x, double *y);
 void	init_ray(t_game **cub);
+void	clean_up(t_game **param);
 
 #endif

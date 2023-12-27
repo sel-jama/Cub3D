@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parse_third_funs.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yboucha <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 00:24:17 by yboucha           #+#    #+#             */
-/*   Updated: 2023/12/24 00:39:16 by yboucha          ###   ########.fr       */
+/*   Updated: 2023/12/26 13:25:06 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*load_identifier_3(char *str, char *ptr)
 {
 	str = malloc(sizeof(char) * ft_strlen(ptr + 2) + 1);
 	ft_strlcpy(str, ptr + 3, ft_strlen(ptr) - 3);
+	//free str here
+	free(str);
 	str = ft_strtrim(str, "   ");
 	return (str);
 }
@@ -33,6 +35,7 @@ void	load_identifier_4(char *ptr, char **vpr, t_path **tmp, char *str)
 			if (ft_strlen(vpr[0]) > 11 || ft_strlen(vpr[1]) > 11
 				|| ft_strlen(vpr[2]) > 11)
 				ft_errors();
+			//free here 3 times
 			(*tmp)->f = ft_atoi(ft_strtrim(vpr[0], " "));
 			(*tmp)->f2 = ft_atoi(ft_strtrim(vpr[1], " "));
 			(*tmp)->f3 = ft_atoi(ft_strtrim(vpr[2], " "));
@@ -43,11 +46,13 @@ void	load_identifier_4(char *ptr, char **vpr, t_path **tmp, char *str)
 			if (ft_strlen(vpr[0]) > 11 || ft_strlen(vpr[1]) > 11
 				|| ft_strlen(vpr[2]) > 11)
 				ft_errors();
+			//free here 3 times
 			(*tmp)->c = ft_atoi(ft_strtrim(vpr[0], " "));
 			(*tmp)->c2 = ft_atoi(ft_strtrim(vpr[1], " "));
 			(*tmp)->c3 = ft_atoi(ft_strtrim(vpr[2], " "));
 		}
 	}
+	//free vpr
 }
 
 void	load_identifier_5h(char *str, char *ptr, t_path **tmp, int j)
@@ -68,6 +73,8 @@ void	load_identifier_5h(char *str, char *ptr, t_path **tmp, int j)
 		else
 			ft_errors();
 	}
+	//free str
+	//free ptr
 }
 
 void	load_identifier_5(char *str, char *ptr, t_path **tmp)

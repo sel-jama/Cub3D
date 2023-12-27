@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 06:17:44 by yboucha           #+#    #+#             */
-/*   Updated: 2023/12/24 11:12:06 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/12/26 13:58:13 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,26 +85,26 @@ void	draw_f(int y_end, t_game **cub, int x)
 void	draw_vertical_line(t_game **cub, int x, int wall_height)
 {
 	t_game			*game;
-	unsigned int	color2;
-	int				ygame;
-	int				xgame;
+	// unsigned int	color2;
+	// int				ygame;
+	// int				xgame;
 	int				y;
 
 	game = *cub;
-	draw_v2(cub);
-	game->addr = mlx_get_data_addr(game->img2, &game->bits_per_pixel1,
-			&game->line_length1, &game->endian1);
+	// draw_v2(cub);
+	// game->addr = mlx_get_data_addr(game->img2, &game->bits_per_pixel1,
+	// 		&game->line_length1, &game->endian1);
 	game->y_start = (SCREEN_H - wall_height) / 2;
 	game->y_end = game->y_start + wall_height;
-	xgame = (game->j1 * fmod(game->ray->hit_x + game->ray->hit_y,
-				game->size)) / game->size;
-	draw_c(game->y_start, cub, x);
+	// xgame = (game->j1 * fmod(game->ray->hit_x + game->ray->hit_y,
+	// 			game->size)) / game->size;
+	// draw_c(game->y_start, cub, x);
 	y = game->y_start;
 	while (y < game->y_end)
 	{
-		ygame = (game->i1 * (y - game->y_start)) / wall_height;
-		color2 = my_mlx_pixel_put(*cub, xgame, ygame, 4);
-		mlx_pixel_put(game->mlx, game->window, x, y, color2);
+		// ygame = (game->i1 * (y - game->y_start)) / wall_height;
+		// color2 = my_mlx_pixel_put(*cub, xgame, ygame, 4);
+		mlx_pixel_put(game->mlx, game->window, x, y, 0x0000FF);
 		y++;
 	}
 	draw_f(game->y_end, cub, x);
