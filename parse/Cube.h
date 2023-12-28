@@ -25,6 +25,8 @@ typedef struct path
 	char				*so;
 	char				*we;
 	char				*ea;
+	int					f_tmp;
+	int					c_tmp;
 	unsigned int		f;
 	unsigned int		f2;
 	unsigned int		f3;

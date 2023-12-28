@@ -1,8 +1,10 @@
 SO execute/2.xpm
 WE execute/3.xpm
 EA execute/4.xpm
-NO execute/1.xpm 
-                                                         C          0,99,255
+NO execute/1.xpm
+
+F 0,99, 99
+            C          0,99,25
 
 111111111111111111111111111111111
 100000000011000000000000000000001

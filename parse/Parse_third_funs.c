@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "../execute/cub3d.h"
+#include "Cube.h"
+#include <stdio.h>
 
 char	*load_identifier_3(char *str, char *ptr)
 {
@@ -35,6 +37,8 @@ void	load_identifier_4(char *ptr, char **vpr, t_path **tmp, char *str)
 	{
 		if (ptr[0] == 'F')
 		{
+      if((*tmp)->f_tmp == 1)
+        ft_errors();
 			check_numbers(vpr);
 			if (ft_strlen(vpr[0]) > 11 || ft_strlen(vpr[1]) > 11
 				|| ft_strlen(vpr[2]) > 11)
@@ -49,6 +53,7 @@ void	load_identifier_4(char *ptr, char **vpr, t_path **tmp, char *str)
 			tmp2 = ft_strtrim(vpr[2], " ");
 			(*tmp)->f3 = ft_atoi(tmp2);
 			free(tmp2);
+      (*tmp)->f_tmp = 1;
 			// clean_up(vpr);
 			// free(vpr[0]);
 			// free(vpr[1]);
@@ -58,6 +63,8 @@ void	load_identifier_4(char *ptr, char **vpr, t_path **tmp, char *str)
 		}
 		else
 		{
+      if ((*tmp)->c_tmp == 1)
+        ft_errors();
 			check_numbers(vpr);
 			if (ft_strlen(vpr[0]) > 11 || ft_strlen(vpr[1]) > 11
 				|| ft_strlen(vpr[2]) > 11)
@@ -72,6 +79,7 @@ void	load_identifier_4(char *ptr, char **vpr, t_path **tmp, char *str)
 			tmp2 = ft_strtrim(vpr[2], " ");
 			(*tmp)->c3 = ft_atoi(tmp2);
 			free(tmp2);
+      (*tmp)->c_tmp = 1;
 			// free(vpr[0]);
 			// free(vpr[1]);
 			// free(vpr[2]);
@@ -87,17 +95,17 @@ void	load_identifier_4(char *ptr, char **vpr, t_path **tmp, char *str)
 
 void	load_identifier_5h(char *str, char *ptr, t_path **tmp, int j)
 {
-	if (ptr[0] == 'W')
+	if (ptr[0] == 'W' && ptr[1] == 'E' && str[0] != '\0')
 	{
-		if ((str[j - 4] == '.') && (str[j - 3] == 'x')
+		if (!(*tmp)->we && str[j - 1] && (str[j - 4] == '.') && (str[j - 3] == 'x')
 			&& (str[j - 2] == 'p') && (str[j -1] == 'm'))
 			(*tmp)->we = str;
 		else
 			ft_errors();
 	}
-	else if (ptr[0] == 'E')
+	else if (ptr[0] == 'E' && ptr[1] == 'A' && str[0] != '\0')
 	{
-		if ((str[j - 4] == '.') && (str[j - 3] == 'x')
+		if (!(*tmp)->ea && str[j - 1] && (str[j - 4] == '.') && (str[j - 3] == 'x')
 			&& (str[j - 2] == 'p') && (str[j -1] == 'm'))
 			(*tmp)->ea = str;
 		else
@@ -109,18 +117,18 @@ void	load_identifier_5(char *str, char *ptr, t_path **tmp)
 {
 	int	j;
 
-	j = ft_strlen(str);
-	if (ptr[0] == 'N' && ptr[1] == 'O')
+	j = ft_strlen(str); 
+	if ( ptr[0] == 'N' && ptr[1] == 'O' && str[0] != '\0')
 	{
-		if ((str[j - 4] == '.') && (str[j - 3] == 'x')
+		if (!(*tmp)->no && str[j - 1] && (str[j - 4] == '.') && (str[j - 3] == 'x')
 			&& (str[j - 2] == 'p') && (str[j -1] == 'm'))
 			(*tmp)->no = str;
 		else
 			ft_errors();
 	}
-	else if (ptr[0] == 'S')
+	else if (ptr[0] == 'S' && ptr[1] == 'O' && str[0] != '\0')
 	{
-		if ((str[j - 4] == '.') && (str[j - 3] == 'x')
+		if (!(*tmp)->so && str[j - 1] && (str[j - 4] == '.') && (str[j - 3] == 'x')
 			&& (str[j - 2] == 'p') && (str[j -1] == 'm'))
 			(*tmp)->so = str;
 		else

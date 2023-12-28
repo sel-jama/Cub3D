@@ -29,7 +29,7 @@ all: ${NAME}
 
 ${NAME} : ${OBJS} ${HEADER}
 	@make -C libft/
-	${CC} ${CFLAGS}  ${OBJS} -L/minilibx-linux/mlx.h -lmlx -lXext -lX11 -lm libft/libft.a -o ${NAME}
+	${CC} ${CFLAGS}  ${OBJS} -lmlx -framework OpenGL -framework AppKit libft/libft.a -o ${NAME}
 
 clean :
 	@rm -f ${OBJS}

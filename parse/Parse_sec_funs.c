@@ -82,4 +82,6 @@ void	load_path(t_path *load)
 	load->f3 = 0;
 	load->c2 = 0;
 	load->c3 = 0;
+	load->c_tmp = 0;
+	load->f_tmp = 0;
 }
