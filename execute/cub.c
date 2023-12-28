@@ -39,6 +39,7 @@ int	get_player_pos(t_game **game, int row, int col, int a)
 	int		s;
 	char	**m;
 
+    (void)col;
 	y = 0;
 	b = 0;
 	m = (*game)->path->map;

@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 unsigned int	my_mlx_pixel_put(t_game *data, int x, int y, int n)
 {
@@ -26,6 +28,10 @@ void	draw_v2(t_game **cub)
 
 	game = *cub;
 	r = game->ray;
+    if (!game->path->no || !game->path->so || !game->path->we || !game->path->ea) {
+            printf("-Error\n");
+            exit(0);
+    }
 	if (r->hit_is_v == 0)
 	{
 		if (r->angle <= M_PI && r->angle >= 0){

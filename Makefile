@@ -12,14 +12,14 @@
 
 SRCS = parse/main.c execute/move.c execute/utils.c execute/castrays.c execute/render.c \
 		parse/get_next_line/get_next_line.c parse/get_next_line/get_next_line_utils.c \
-		Parse/Parse_funs.c Parse/Parse_sec_funs.c Parse/Parse_third_funs.c \
+		parse/Parse_funs.c parse/Parse_sec_funs.c parse/Parse_third_funs.c \
 		execute/init.c execute/player.c execute/cub.c execute/cast_utils.c \
 		execute/render_2.c parse/Parse_4.c \
 		parse/Parse_5.c 
 
 OBJS = ${SRCS:.c=.o}
 
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS =  -fsanitize=address
 
 NAME = cub3D
 
@@ -29,7 +29,7 @@ all: ${NAME}
 
 ${NAME} : ${OBJS} ${HEADER}
 	@make -C libft/
-	${CC} ${CFLAGS}  ${OBJS} -lmlx -framework OpenGL -framework AppKit libft/libft.a -o ${NAME}
+	${CC} ${CFLAGS}  ${OBJS} -L/minilibx-linux/mlx.h -lmlx -lXext -lX11 -lm libft/libft.a -o ${NAME}
 
 clean :
 	@rm -f ${OBJS}

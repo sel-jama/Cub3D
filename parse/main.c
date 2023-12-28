@@ -27,9 +27,12 @@ int	c_main(t_path *load, char *ptr, char *av[], int n)
 			free(ptr);
 			break;
 		}
-		else if (empty_line(ptr) == 0)
-			free(ptr);
-		if (empty_line(ptr) == 1)
+		if (ptr && empty_line(ptr) == 0)
+        {
+            free(ptr);
+            ptr = NULL;
+        }
+		if (ptr && empty_line(ptr) == 1)
 		{
 			free(ptr);
 			n += 1;
@@ -65,8 +68,9 @@ void	c_main2(t_path *load, char *ptr, char *av[], int n)
 		else if (empty_line(ptr) == 0)
 		{
 			free(ptr);
+            ptr = NULL;
 		}
-		if (parametre_map(ptr, &load) == 0 && empty_line(ptr) == 1)
+		if (ptr && parametre_map(ptr, &load) == 0 && empty_line(ptr) == 1)
 		{
 			// load->map[n] = malloc(sizeof(char) * (ft_strlen(ptr) + 1));
 			load->map[n] = ptr;
@@ -124,6 +128,6 @@ int	main(int ac, char *av[])
 	else
 		ft_errors();
 	cub.size = 32;
-	count_rows_c(&load, &cub);
+    count_rows_c(&load, &cub);
 	start_game(&cub);
 }
