@@ -67,16 +67,18 @@ void	c_main2(t_path *load, char *ptr, char *av[], int n)
 		}
 		else if (empty_line(ptr) == 0)
 		{
+			if(ptr[0] == '\n')
+				ft_errors();
 			free(ptr);
             ptr = NULL;
 		}
 		if (ptr && parametre_map(ptr, &load) == 0 && empty_line(ptr) == 1)
 		{
-      if (!load->no || !load->so || !load->we || !load->ea)
-      {
-            printf("-Error\n");
-            exit(0);
-      }
+				if (!load->no || !load->so || !load->we || !load->ea || load->c_tmp == 0 || load->f_tmp == 0)
+				{
+						printf("-Error\n");
+						exit(0);
+				}
 			// load->map[n] = malloc(sizeof(char) * (ft_strlen(ptr) + 1));
 			load->map[n] = ptr;
 			// free(ptr);

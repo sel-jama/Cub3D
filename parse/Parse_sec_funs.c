@@ -22,6 +22,8 @@ void	check_map2(int i, int n, char **ptr, int *f)
 	while (ptr[i][j])
 	{
 		c = ptr[i][j];
+		if(j == 0 && ptr[i][j] == '\n')
+			exit(0);
 		check_map3(i, n, c);
 		if (c == '0')
 		{

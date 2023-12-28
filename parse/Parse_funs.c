@@ -29,7 +29,7 @@ int	empty_line(char *ptr)
 	i = 0;
 	while (ptr[i])
 	{
-		if (ptr[i] == '0' || ptr[i] == '1' || ptr[i] == 'N'
+		if ((ptr[i] >= '0' && ptr[i] <= '9') || ptr[i] == 'N'
 			|| ptr[i] == 'S' || ptr[i] == 'W' || ptr[i] == 'E')
 			return (1);
 		i++;
@@ -39,8 +39,10 @@ int	empty_line(char *ptr)
 
 int	parametere_map2(char *ptr, t_path **load, char *str, int i)
 {
+	// printf("hi\n");
 	if ((ptr[i] == 'F' || ptr[i] == 'C'))
 	{
+		printf("ha\n");
 		if ((ptr[i + 1] == 9 || ptr[i + 1] == 32) && ptr[i + 2])
 		{
 			char *tmp = (ptr + (i + 2));
@@ -56,9 +58,12 @@ int	parametere_map2(char *ptr, t_path **load, char *str, int i)
 				ptr = ft_strjoin("C ", str);
 			}
 			free(str);
+			printf("--------%s\n", ptr);
 			load_identifier(ptr, 2, &(*load));
 			return (1);
 		}
+		else
+			ft_errors();
 	}
 	if (ptr[i] == 'N' && ptr[i + 1] && ptr[i + 1] == 'O')
 	{
@@ -72,6 +77,8 @@ int	parametere_map2(char *ptr, t_path **load, char *str, int i)
 			load_identifier(ptr, 3, &(*load));
 			return (1);
 		}
+		else
+			ft_errors();
 	}
 	return (0);
 }
@@ -90,6 +97,8 @@ int	parametere_map3(char *ptr, t_path **load, char *str, int i)
 			load_identifier(ptr, 3, &(*load));
 			return (1);
 		}
+		else
+			ft_errors();
 	}
 	else if (ptr[i] == 'W' && ptr[i + 1] && ptr[i + 1] == 'E')
 	{
@@ -103,6 +112,8 @@ int	parametere_map3(char *ptr, t_path **load, char *str, int i)
 			load_identifier(ptr, 3, &(*load));
 			return (1);
 		}
+		else
+			ft_errors();
 	}
 	return (0);
 }
@@ -116,6 +127,7 @@ int	parametre_map(char *ptr, t_path **load_2)
 	str = NULL;
 	while (ptr[i])
 	{
+		printf("%c\n", ptr[i]);
 		if (parametere_map2(ptr, load_2, str, i) == 1)
 			return (1);
 		if (parametere_map3(ptr, load_2, str, i) == 1)
@@ -131,6 +143,8 @@ int	parametre_map(char *ptr, t_path **load_2)
 				load_identifier(ptr, 3, &(*load_2));
 				return (1);
 			}
+			else
+				ft_errors();
 		}
 		i++;
 	}

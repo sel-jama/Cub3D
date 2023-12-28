@@ -33,18 +33,21 @@ void	load_identifier_4(char *ptr, char **vpr, t_path **tmp, char *str)
 {
 	(void)str;
 	char *tmp2 = NULL;
+	printf("%c\n", ptr[0]);
 	if (ptr[0] == 'F' || ptr[0] == 'C')
 	{
 		if (ptr[0] == 'F')
 		{
-      if((*tmp)->f_tmp == 1)
-        ft_errors();
+      		if((*tmp)->f_tmp == 1)
+        		ft_errors();
 			check_numbers(vpr);
 			if (ft_strlen(vpr[0]) > 11 || ft_strlen(vpr[1]) > 11
 				|| ft_strlen(vpr[2]) > 11)
 				ft_errors();
 			//free here 3 times
 			tmp2 = ft_strtrim(vpr[0], " ");
+			if(tmp2[0] == '\0')
+				ft_errors();
 			(*tmp)->f = ft_atoi(tmp2);
 			free(tmp2);
 			tmp2 = ft_strtrim(vpr[1], " ");
@@ -53,7 +56,7 @@ void	load_identifier_4(char *ptr, char **vpr, t_path **tmp, char *str)
 			tmp2 = ft_strtrim(vpr[2], " ");
 			(*tmp)->f3 = ft_atoi(tmp2);
 			free(tmp2);
-      (*tmp)->f_tmp = 1;
+      		(*tmp)->f_tmp = 1;
 			// clean_up(vpr);
 			// free(vpr[0]);
 			// free(vpr[1]);
@@ -63,23 +66,24 @@ void	load_identifier_4(char *ptr, char **vpr, t_path **tmp, char *str)
 		}
 		else
 		{
-      if ((*tmp)->c_tmp == 1)
-        ft_errors();
-			check_numbers(vpr);
-			if (ft_strlen(vpr[0]) > 11 || ft_strlen(vpr[1]) > 11
-				|| ft_strlen(vpr[2]) > 11)
-				ft_errors();
-			//free here 3 times
-			tmp2 = ft_strtrim(vpr[0], " ");
-			(*tmp)->c = ft_atoi(tmp2);
-			free(tmp2);
-			tmp2 = ft_strtrim(vpr[1], " ");
-			(*tmp)->c2 = ft_atoi(tmp2);
-			free(tmp2);
-			tmp2 = ft_strtrim(vpr[2], " ");
-			(*tmp)->c3 = ft_atoi(tmp2);
-			free(tmp2);
-      (*tmp)->c_tmp = 1;
+					printf("hi\n");
+					if ((*tmp)->c_tmp == 1)
+						ft_errors();
+					check_numbers(vpr);
+					if (ft_strlen(vpr[0]) > 11 || ft_strlen(vpr[1]) > 11
+						|| ft_strlen(vpr[2]) > 11)
+						ft_errors();
+					//free here 3 times
+					tmp2 = ft_strtrim(vpr[0], " ");
+					(*tmp)->c = ft_atoi(tmp2);
+					free(tmp2);
+					tmp2 = ft_strtrim(vpr[1], " ");
+					(*tmp)->c2 = ft_atoi(tmp2);
+					free(tmp2);
+					tmp2 = ft_strtrim(vpr[2], " ");
+					(*tmp)->c3 = ft_atoi(tmp2);
+					free(tmp2);
+					(*tmp)->c_tmp = 1;
 			// free(vpr[0]);
 			// free(vpr[1]);
 			// free(vpr[2]);
@@ -88,8 +92,10 @@ void	load_identifier_4(char *ptr, char **vpr, t_path **tmp, char *str)
 			// free(vpr);
 		}
 	}
-	if (vpr)
+	else if (vpr)
 		clean_up(vpr);
+	// else
+	// 	ft_errors();
 	//free vpr
 }
 
