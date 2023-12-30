@@ -19,12 +19,17 @@ char	*load_identifier_3(char *str, char *ptr)
 	char *tmp = NULL;
 	char *tmp2 = NULL;
 	tmp = ptr + 3;
+	printf("%s\n", ptr);
+	if(ptr[0] != 'N' && ptr[0] != 'S' && ptr[0] != 'W' && ptr[0] != 'E' &&  ptr[0] != 'F' && ptr[0] != 'C')
+		ft_errors();
 	str = malloc(sizeof(char) * ft_strlen(ptr + 3) + 1);
 	ft_strlcpy(str, tmp, ft_strlen(ptr) - 3);
 	// free(str);
 	// free(str);
 	// printf("%s\n", str);
 	tmp2 = ft_strtrim(str, "   ");
+	if(!tmp2)
+		ft_errors();
 	free(str);
 	return (tmp2);
 }

@@ -29,6 +29,9 @@ int	c_main(t_path *load, char *ptr, char *av[], int n)
 		}
 		if (ptr && empty_line(ptr) == 0)
         {
+			if((ptr[0] == 32 || ptr[0] == 9) || (ptr[0] != 'N' && ptr[0] != 'S' 
+				&& ptr[0] != 'W' && ptr[0] != 'E' && ptr[0] != 'F' && ptr[0] != 'C' && ptr[0] != '\n'))
+				ft_errors();
             free(ptr);
             ptr = NULL;
         }
@@ -67,16 +70,16 @@ void	c_main2(t_path *load, char *ptr, char *av[], int n)
 		}
 		else if (empty_line(ptr) == 0)
 		{
-			if(ptr[0] == '\n')
+			if((n >= 1 && ptr[0] == '\n') && (n >= 1 && (ptr[0] == 32 && ptr[0] == 9)))
 				ft_errors();
 			free(ptr);
             ptr = NULL;
 		}
-		if (ptr && parametre_map(ptr, &load) == 0 && empty_line(ptr) == 1)
+		if ((ptr && parametre_map(ptr, &load) == 0 && empty_line(ptr) == 1))
 		{
-				if (!load->no || !load->so || !load->we || !load->ea || load->c_tmp == 0 || load->f_tmp == 0)
+				if (!load->no && !load->so && !load->we && !load->ea && load->c_tmp == 0 && load->f_tmp == 0)
 				{
-						printf("-Error\n");
+						printf("Error\n");
 						exit(0);
 				}
 			// load->map[n] = malloc(sizeof(char) * (ft_strlen(ptr) + 1));

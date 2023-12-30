@@ -29,8 +29,9 @@ int	empty_line(char *ptr)
 	i = 0;
 	while (ptr[i])
 	{
-		if ((ptr[i] >= '0' && ptr[i] <= '9') || ptr[i] == 'N'
-			|| ptr[i] == 'S' || ptr[i] == 'W' || ptr[i] == 'E')
+		if ((ptr[i] >= '0' && ptr[i] <= '9') || (ptr[i] == 'N' && ptr[i + 1] != 'O')
+			|| (ptr[i] == 'S' && ptr[i + 1] != 'O') || (ptr[i] == 'W' && ptr[i + 1] != 'E')
+			|| (ptr[i] == 'E' && ptr[i + 1] != 'A'))
 			return (1);
 		i++;
 	}
@@ -136,7 +137,8 @@ int	parametre_map(char *ptr, t_path **load_2)
 		{
 			if ((ptr[i + 2] == 9 || ptr[i + 2] == 32) && ptr[i + 3])
 			{
-				str = ft_strtrim(ptr + 3, " ");
+				char *tmp = (ptr + (i + 3));
+				str = ft_strtrim(tmp, " ");
 				free(ptr);
 				ptr = ft_strjoin("EA ", str);
 				free(str);
