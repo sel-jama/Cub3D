@@ -19,15 +19,13 @@ SRCS = parse/main.c execute/move.c execute/utils.c execute/castrays.c execute/re
 
 OBJS = ${SRCS:.c=.o}
 
-CFLAGS =  -fsanitize=address
+CFLAGS =  -Wall -Wextra -Werror
 
 NAME = cub3D
 
-HEADER = execute/cub3d.h
-
 all: ${NAME}
 
-${NAME} : ${OBJS} ${HEADER}
+${NAME} : ${OBJS}
 	@make -C libft/
 	${CC} ${CFLAGS}  ${OBJS} -lmlx -framework OpenGL -framework AppKit libft/libft.a -o ${NAME}
 

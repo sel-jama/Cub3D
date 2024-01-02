@@ -43,15 +43,6 @@ void	closest_distance(t_game **cast, t_ray *ray)
 
 int	first_horz_inter(t_game **cub, t_ray *ray, double *dx, double *dy)
 {
-	double	epsilon;
-
-	epsilon = 1e-3;
-	if (fabs(ray->angle - 2 * M_PI) < epsilon
-		|| fabs(ray->angle - M_PI) < epsilon)
-	{
-		ray->found_h_hit = -1;
-		return (0);
-	}
 	*dy = floor((*cub)->pos_y / 32) * 32;
 	if (ray->facing_down)
 		*dy += 32;
@@ -61,15 +52,6 @@ int	first_horz_inter(t_game **cub, t_ray *ray, double *dx, double *dy)
 
 int	first_vert_inter(t_game **cub, t_ray *ray, double *dx, double *dy)
 {
-	double	epsilon;
-
-	epsilon = 1e-3;
-	if (fabs(ray->angle - (1.5 * M_PI)) < epsilon
-		|| fabs(ray->angle - 0.5 * M_PI) < epsilon)
-	{
-		ray->found_v_hit = -1;
-		return (0);
-	}
 	*dx = floor((*cub)->pos_x / 32) * 32;
 	if (ray->facing_right)
 		*dx += 32;

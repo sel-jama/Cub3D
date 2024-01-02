@@ -66,7 +66,6 @@ char	**load_identifier_2(int l, char *ptr, char **vpr, int g)
 {
 	l = 2;
 	g = 0;
-	printf("errrrr\n");
 	char *tmp = NULL;
 	while (ptr[l] && ptr[l] != '\n')
 	{
@@ -81,7 +80,6 @@ char	**load_identifier_2(int l, char *ptr, char **vpr, int g)
 		ft_errors();
 	tmp = ptr + 2;
 	vpr = ft_split(tmp, ',');
-	printf("---%s\n", vpr[0]);
 	if (vpr == NULL || vpr[0] == NULL || vpr[1] == NULL || vpr[2] == NULL)
 		ft_errors();
 	return (vpr);

@@ -40,7 +40,6 @@ int	empty_line(char *ptr)
 
 int	parametere_map2(char *ptr, t_path **load, char *str, int i)
 {
-	// printf("hi\n");
 	if ((ptr[i] == 'F' || ptr[i] == 'C'))
 	{
 		printf("ha\n");
@@ -59,7 +58,6 @@ int	parametere_map2(char *ptr, t_path **load, char *str, int i)
 				ptr = ft_strjoin("C ", str);
 			}
 			free(str);
-			printf("--------%s\n", ptr);
 			load_identifier(ptr, 2, &(*load));
 			return (1);
 		}
@@ -128,7 +126,6 @@ int	parametre_map(char *ptr, t_path **load_2)
 	str = NULL;
 	while (ptr[i])
 	{
-		printf("%c\n", ptr[i]);
 		if (parametere_map2(ptr, load_2, str, i) == 1)
 			return (1);
 		if (parametere_map3(ptr, load_2, str, i) == 1)
