@@ -76,10 +76,19 @@ char	**load_identifier_2(int l, char *ptr, char **vpr, int g)
 			ft_errors();
 		l++;
 	}
+	if(l <= 2)
+		ft_errors();
 	if (g > 2 || g == 0)
 		ft_errors();
 	tmp = ptr + 2;
+	
+	// if(tmp[0] < '0' || tmp[0] > '9')
+	// dprintf(2, "%c", tmp[0]);
 	vpr = ft_split(tmp, ',');
+	// if(strcmp(vpr[0], "") == 0)
+	// 	printf("catched\n");
+		
+	// if(vpr[2] == NULL)
 	if (vpr == NULL || vpr[0] == NULL || vpr[1] == NULL || vpr[2] == NULL)
 		ft_errors();
 	return (vpr);

@@ -16,6 +16,8 @@ void	error_ditected(const char *error)
 {
 	ft_putstr_fd("Error\n", 2);
 	write(2, error, ft_strlen(error));
+	write(2, "\n", 1);
+	exit(1);
 }
 
 double	normalize_angle(double angle)

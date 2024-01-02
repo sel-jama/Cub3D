@@ -27,6 +27,8 @@ int	empty_line(char *ptr)
 	int	i;
 
 	i = 0;
+	if(!ptr)
+		exit(0);
 	while (ptr[i])
 	{
 		if ((ptr[i] >= '0' && ptr[i] <= '9') || (ptr[i] == 'N' && ptr[i + 1] != 'O')
@@ -42,7 +44,6 @@ int	parametere_map2(char *ptr, t_path **load, char *str, int i)
 {
 	if ((ptr[i] == 'F' || ptr[i] == 'C'))
 	{
-		printf("ha\n");
 		if ((ptr[i + 1] == 9 || ptr[i + 1] == 32) && ptr[i + 2])
 		{
 			char *tmp = (ptr + (i + 2));

@@ -20,10 +20,12 @@ void c_main_h(char *ptr, int *n)
 				&& ptr[0] != 'W' && ptr[0] != 'E' && ptr[0] != 'F' && ptr[0] != 'C' && ptr[0] != '\n'))
 				ft_errors();
             free(ptr);
+			ptr = NULL;
         }
-		if (ptr && empty_line(ptr) == 1)
+		else if (ptr && empty_line(ptr) == 1)
 		{
 			free(ptr);
+			ptr = NULL;
 			*n += 1;
 		}
 }
@@ -84,7 +86,8 @@ void	c_main2(t_path *load, char *ptr, char *av[], int n)
 		c_main2_h(&ptr, n);
 		if ((ptr && parametre_map(ptr, &load) == 0 && empty_line(ptr) == 1))
 		{
-			if (!load->no && !load->so && !load->we && !load->ea && load->c_tmp == 0 && load->f_tmp == 0)
+			if (!load->no && !load->so && !load->we && !load->ea
+				&& load->c_tmp == 0 && load->f_tmp == 0)
 					ft_errors();
 			load->map[n] = ptr;
 			n += 1;

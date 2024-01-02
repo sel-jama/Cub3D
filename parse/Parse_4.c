@@ -16,15 +16,17 @@ int	is_rounded(char **ptr, int i, int j)
 {
 	if ((ptr[i - 1]) && ((ptr[i - 1][j] == 32 || ptr[i - 1][j] == 9)
 			|| ((ptr[i][j + 1] == 32 || ptr[i][j + 1] == 9))))
-		return (2);
+		ft_errors();
 	if (ptr[i + 1] && ((ptr[i + 1][j] == 32 || ptr[i + 1][j] == 9)
 			|| (!ptr[i][j - 1] || (ptr[i][j - 1] == 32 || ptr[i][j - 1] == 9))))
-		return (2);
-	if (ptr[i - 1][j] == '1' && ptr[i][j + 1] == '1'
-			&& ptr[i][j - 1] == 1 && ptr[i + 1][j] == 1)
-		return (2);
+		ft_errors();
+	if (ptr[i + 1] && ((ptr[i + 1][j] == '\0' || ptr[i + 1][j] == '\0')
+			|| (!ptr[i][j - 1] || (ptr[i][j - 1] == '\0' || ptr[i][j - 1] == '\n'))))
+		ft_errors();
 	if (!ptr[i + 1][j])
-		return (2);
+		ft_errors();
+	if (ptr[i][j + 1] == '\n')
+		ft_errors();
 	return (1);
 }
 

@@ -54,6 +54,8 @@ void load_identifier_4h(char **vpr, t_path **tmp, char *tmp2)
 
 void load_identifier_4h2(char **vpr, t_path **tmp, char *tmp2)
 {
+					if(vpr[0] == NULL)
+						ft_errors();
 					if ((*tmp)->c_tmp == 1)
 						ft_errors();
 					check_numbers(vpr);
@@ -76,7 +78,6 @@ void	load_identifier_4(char *ptr, char **vpr, t_path **tmp, char *str)
 {
 	(void)str;
 	char *tmp2 = NULL;
-	// printf("%c\n", ptr[0]);
 	if (ptr[0] == 'F' || ptr[0] == 'C')
 	{
 		if (ptr[0] == 'F')
@@ -84,51 +85,76 @@ void	load_identifier_4(char *ptr, char **vpr, t_path **tmp, char *str)
 		else
 			load_identifier_4h2(vpr, tmp, tmp2);
 	}
+	// if()
+	// 	ft_errors();
 	if (vpr)
 		clean_up(vpr);
 }
 
 void	load_identifier_5h(char *str, char *ptr, t_path **tmp, int j)
 {
-	if (ptr[0] == 'W' && ptr[1] == 'E' && str[0] != '\0')
+	int l;
+
+	l = 0;
+	if((ptr[0] == 'W' && ptr[1] == 'E' && (*tmp)->we) || (ptr[0] == 'E' && ptr[1] == 'A' && (*tmp)->ea))
+		ft_errors();
+	if (ptr[0] == 'W' && ptr[1] == 'E' && str[0] != '\0' && !(*tmp)->we)
 	{
 		if (!(*tmp)->we && str[j - 1] && (str[j - 4] == '.') && (str[j - 3] == 'x')
 			&& (str[j - 2] == 'p') && (str[j -1] == 'm'))
-			(*tmp)->we = str;
-		else
-			ft_errors();
+			{
+				l = open(str, F_OK | R_OK);
+				if(l == -1)
+					ft_errors();
+				(*tmp)->we = str;
+		}
 	}
-	else if (ptr[0] == 'E' && ptr[1] == 'A' && str[0] != '\0')
+	else if (ptr[0] == 'E' && ptr[1] == 'A' && str[0] != '\0' && !(*tmp)->ea)
 	{
 		if (!(*tmp)->ea && str[j - 1] && (str[j - 4] == '.') && (str[j - 3] == 'x')
 			&& (str[j - 2] == 'p') && (str[j -1] == 'm'))
-			(*tmp)->ea = str;
-		else
-			ft_errors();
+		{
+			l = open(str, F_OK | R_OK);
+				if(l == -1)
+					ft_errors();
+				(*tmp)->ea = str;
+		}
 	}
 }
 
 void	load_identifier_5(char *str, char *ptr, t_path **tmp)
 {
-	int	j;
+	int	l;
+	int j;
 
-	j = ft_strlen(str); 
-	if ( ptr[0] == 'N' && ptr[1] == 'O' && str[0] != '\0')
+	l = 0;
+	j = ft_strlen(str);
+	if((ptr[0] == 'N' && ptr[1] == 'O' && (*tmp)->no) || (ptr[0] == 'S' && ptr[1] == 'O' && (*tmp)->so))
+		ft_errors();
+	if ( ptr[0] == 'N' && ptr[1] == 'O' && str[0] != '\0' && !(*tmp)->no)
 	{
 		if (!(*tmp)->no && str[j - 1] && (str[j - 4] == '.') && (str[j - 3] == 'x')
 			&& (str[j - 2] == 'p') && (str[j -1] == 'm'))
-			(*tmp)->no = str;
-		else
-			ft_errors();
+			{
+				l = open(str, F_OK | R_OK);
+				if(l == -1)
+					ft_errors();
+				(*tmp)->no = str;
+			}
 	}
-	else if (ptr[0] == 'S' && ptr[1] == 'O' && str[0] != '\0')
+	else if (ptr[0] == 'S' && ptr[1] == 'O' && str[0] != '\0' && !(*tmp)->so)
 	{
 		if (!(*tmp)->so && str[j - 1] && (str[j - 4] == '.') && (str[j - 3] == 'x')
 			&& (str[j - 2] == 'p') && (str[j -1] == 'm'))
-			(*tmp)->so = str;
-		else
-			ft_errors();
+		{
+			l = open(str, F_OK | R_OK);
+				if(l == -1)
+					ft_errors();
+				(*tmp)->so = str;
+		}
 	}
+	else if (ptr[0] == 'N' && ptr[1] == 'O')
+		ft_errors();
 	load_identifier_5h(str, ptr, tmp, j);
 }
 

@@ -93,6 +93,8 @@ void	draw_vertical_line(t_game **cub, int x, int wall_height)
 
 	game = *cub;
 	draw_v2(cub);
+	if (!game->img2)
+		exit(1);
 	game->addr = mlx_get_data_addr(game->img2, &game->bits_per_pixel1,
 			&game->line_length1, &game->endian1);
 	game->y_start = (SCREEN_H - wall_height) / 2;
