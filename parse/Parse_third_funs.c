@@ -173,6 +173,9 @@ void	load_identifier(char *ptr, int start, t_path **load)
 	vpr = NULL;
 	l = 0;
 	tmp = *load;
+	printf("%c\n", ptr[0]);
+	if ((ptr[0] == 'C' && (*load)->c_tmp == 1) || (ptr[0] == 'F' && (*load)->f_tmp == 1))
+		ft_errors();
 	if (ptr[0] == 'F' || ptr[0] == 'C')
 		vpr = load_identifier_2(l, ptr, vpr, g);
 	else

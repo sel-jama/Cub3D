@@ -44,7 +44,7 @@ void	check_map(char **ptr, int n);
 int		parametre_map(char *ptr, t_path **load_2);
 void	load_map(int n, t_path **load);
 int		empty_line(char *ptr);
-void	check_double(char **ptr, int i, int j);
+void	check_double(char **ptr);
 void	load_identifier(char *ptr, int start, t_path **load);
 int		check_interput(char *arg);
 void	check_numbers(char **vpr);

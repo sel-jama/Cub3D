@@ -25,8 +25,8 @@ int	recored_pos(t_game **game, int x, int y, char dir)
 	t_game	*g;
 
 	g = *game;
-	g->pos_x = x;
-	g->pos_y = y;
+	g->pos_x = x + 0.5;
+	g->pos_y = y + 0.5;
 	g->direction = dir;
 	return (1);
 }

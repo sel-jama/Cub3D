@@ -17,23 +17,34 @@ int	is_rounded(char **ptr, int i, int j)
 	if ((ptr[i - 1]) && ((ptr[i - 1][j] == 32 || ptr[i - 1][j] == 9)
 			|| ((ptr[i][j + 1] == 32 || ptr[i][j + 1] == 9))))
 		ft_errors();
-	if (ptr[i + 1] && ((ptr[i + 1][j] == 32 || ptr[i + 1][j] == 9)
+	if (((ptr[i + 1][j] == 32 || ptr[i + 1][j] == 9)
 			|| (!ptr[i][j - 1] || (ptr[i][j - 1] == 32 || ptr[i][j - 1] == 9))))
 		ft_errors();
-	if (ptr[i + 1] && ((ptr[i + 1][j] == '\0' || ptr[i + 1][j] == '\0')
-			|| (!ptr[i][j - 1] || (ptr[i][j - 1] == '\0' || ptr[i][j - 1] == '\n'))))
+	if (((ptr[i + 1][j] == '\0' || ptr[i + 1][j] == '\n')
+	 	|| (ptr[i][j + 1] == '\0' || ptr[i][j + 1] == '\n') || (!ptr[i][j - 1])))
 		ft_errors();
-	if (!ptr[i + 1][j])
+	if (((ptr[i - 1][j] == 32 || ptr[i - 1][j] == 9)
+			|| ((ptr[i][j + 1] == 32 || ptr[i][j + 1] == 9))))
+			ft_errors();
+	if (!ptr[i + 1][j] || ptr[i + 1][j] == '\n')
+		ft_errors();
+	if (!ptr[i - 1][j])
 		ft_errors();
 	if (ptr[i][j + 1] == '\n')
 		ft_errors();
 	return (1);
 }
 
-void	check_double(char **ptr, int i, int j)
+void	check_double(char **ptr)
 {
 	char	c;
+	int t;
+	int i;
+	int j;
 
+	t = 0;
+	i = 0;
+	j = 0;
 	while (ptr[i])
 	{
 		j = 0;
@@ -41,6 +52,8 @@ void	check_double(char **ptr, int i, int j)
 		{
 			c = ptr[i][j];
 			if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+				t += 1;
+			if(t == 2)
 				ft_errors();
 			j++;
 		}

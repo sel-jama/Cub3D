@@ -12,20 +12,26 @@
 
 #include "Cube.h"
 
-void	check_map2(int i, int n, char **ptr, int *f)
+void check_map2(int i, int n, char **ptr, int *f)
 {
-	int		j;
-	int		t;
-	char	c;
+	int j;
+	int t;
+	char c;
 
 	j = 0;
 	while (ptr[i][j])
 	{
 		c = ptr[i][j];
-		if(j == 0 && ptr[i][j] == '\n')
+		if (j == 0 && ptr[i][j] == '\n')
 			exit(0);
 		check_map3(i, n, c);
 		if (c == '0')
+		{
+			t = is_rounded(ptr, i, j);
+			if (t == 2)
+				ft_errors();
+		}
+		if (c == 'N' || c == 'E' || c == 'W' || c == 'S')
 		{
 			t = is_rounded(ptr, i, j);
 			if (t == 2)
@@ -41,10 +47,10 @@ void	check_map2(int i, int n, char **ptr, int *f)
 	}
 }
 
-void	check_map(char **ptr, int n)
+void check_map(char **ptr, int n)
 {
-	int		i;
-	int		f;
+	int i;
+	int f;
 
 	i = 0;
 	f = 0;
@@ -57,22 +63,21 @@ void	check_map(char **ptr, int n)
 	}
 }
 
-int	check_interput(char *arg)
+int check_interput(char *arg)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (arg[i])
 		i++;
 	i -= 1;
-	if (arg[i] == 'b' && arg[i - 1] == 'u' && arg[i - 2] == 'c'
-		&& arg[i - 3] == '.' && arg[i - 4])
+	if (arg[i] == 'b' && arg[i - 1] == 'u' && arg[i - 2] == 'c' && arg[i - 3] == '.' && arg[i - 4])
 		return (1);
 	ft_putendl_fd("Error : invalid file .", 2);
 	return (0);
 }
 
-void	load_path(t_path *load)
+void load_path(t_path *load)
 {
 	load->we = NULL;
 	load->so = NULL;

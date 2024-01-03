@@ -57,11 +57,41 @@ int	c_main(t_path *load, char *ptr, char *av[], int n)
 	return (n);
 }
 
-void c_main2_h(char **ptr, int n)
-{
+void c_main2_h(char **ptr, int n, t_path **load)
+{	
+	int i;
+	char *tmp;
+	int l;
+	int g;
+
+	i = 0;
+	l = 0;
+	g = 0;
+	tmp = *ptr;
+	while (tmp[i])
+	{
+		if(tmp[i] == 'F')
+		{
+			l = 1;
+			if((*load)->f_tmp == 1)
+				ft_errors();
+		}
+		if(tmp[i] == 'C')
+		{
+			l = 1;
+
+			if((*load)->c_tmp == 1)
+				ft_errors();
+		}
+		if(l == 1 && tmp[i] >= '0' && tmp[i] <= '9')
+				g = 1;
+		i++;
+	}
+	if(g == 0 && l == 1)
+		ft_errors();
 	if (empty_line(*ptr) == 0)
 		{
-			if((n >= 1 && *ptr[0] == '\n') && (n >= 1 && (*ptr[0] == 32 && *ptr[0] == 9)))
+			if((n >= 1 && *ptr[0] == '\n') || (n >= 1 && (*ptr[0] == 32 && *ptr[0] == 9)))
 				ft_errors();
 			free(*ptr);
             *ptr = NULL;
@@ -83,7 +113,7 @@ void	c_main2(t_path *load, char *ptr, char *av[], int n)
 		ptr = get_next_line(t);
 		if (ptr == NULL)
 			break ;
-		c_main2_h(&ptr, n);
+		c_main2_h(&ptr, n, &load);
 		if ((ptr && parametre_map(ptr, &load) == 0 && empty_line(ptr) == 1))
 		{
 			if (!load->no && !load->so && !load->we && !load->ea
@@ -139,6 +169,7 @@ int	main(int ac, char *av[])
 			return (0);
 		n = c_main(&load, ptr, av, n);
 		c_main2(&load, ptr, av, n);
+		check_double(load.map);
 	}
 	else
 		ft_errors();
