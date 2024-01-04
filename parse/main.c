@@ -79,7 +79,6 @@ void c_main2_h(char **ptr, int n, t_path **load)
 		if(tmp[i] == 'C')
 		{
 			l = 1;
-
 			if((*load)->c_tmp == 1)
 				ft_errors();
 		}

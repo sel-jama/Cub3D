@@ -61,6 +61,52 @@ int	get_player_pos(t_game **game, int row, int col, int a)
 	return (0);
 }
 
+void load_images2(t_game **cub)
+{
+
+	(*cub)->img1 = mlx_xpm_file_to_image((*cub)->mlx, (*cub)->path->no, &(*cub)->i1, &(*cub)->j1);
+	if(!(*cub)->img1)
+		ft_errors();
+	(*cub)->addr = mlx_get_data_addr((*cub)->img1, &(*cub)->bits_per_pixel1, &(*cub)->line_length1, &(*cub)->endian1);
+	if(!(*cub)->addr)
+		ft_errors();
+	(*cub)->img2 = mlx_xpm_file_to_image((*cub)->mlx, (*cub)->path->so, &(*cub)->i2, &(*cub)->j2);
+	if(!(*cub)->img2)
+		ft_errors();
+	(*cub)->addr2 = mlx_get_data_addr((*cub)->img2, &(*cub)->bits_per_pixel2, &(*cub)->line_length2, &(*cub)->endian2);
+	if(!(*cub)->addr2)
+		ft_errors();
+	(*cub)->img3 = mlx_xpm_file_to_image((*cub)->mlx, (*cub)->path->we, &(*cub)->i3, &(*cub)->j3);
+	if(!(*cub)->img3)
+		ft_errors();
+	(*cub)->addr3 = mlx_get_data_addr((*cub)->img3, &(*cub)->bits_per_pixel3, &(*cub)->line_length3, &(*cub)->endian3);
+	if(!(*cub)->addr3)
+		ft_errors();
+	(*cub)->img4 = mlx_xpm_file_to_image((*cub)->mlx, (*cub)->path->ea, &(*cub)->i4, &(*cub)->j4);
+	if(!(*cub)->img4)
+		ft_errors();
+	(*cub)->addr4 = mlx_get_data_addr((*cub)->img4, &(*cub)->bits_per_pixel4, &(*cub)->line_length4, &(*cub)->endian4);
+	if(!(*cub)->addr4)
+		ft_errors();
+
+}
+
+void load_images(t_game **cub)
+{
+	t_game *tmp;
+
+	tmp = *cub;
+	if(open(tmp->path->no, O_RDONLY) == -1)
+		ft_errors();
+	if(open(tmp->path->so, O_RDONLY) == -1)
+		ft_errors();
+	if(open(tmp->path->we, O_RDONLY) == -1)
+		ft_errors();
+	if(open(tmp->path->ea, O_RDONLY) == -1)
+		ft_errors();
+	load_images2(cub);
+}
+
 void	start_game(t_game *cub)
 {
 	cub->mlx = mlx_init();
@@ -71,6 +117,7 @@ void	start_game(t_game *cub)
 	initializer(&cub);
 	cub->window = mlx_new_window(cub->mlx, SCREEN_W,
 			SCREEN_H, "Cub3D");
+	load_images(&cub);
 	if (!cub->window)
 		error_ditected("Failed to open window");
 	mlx_hook(cub->window, 2, 0, keypress_event, cub);
