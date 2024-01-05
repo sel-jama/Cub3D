@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 06:17:44 by yboucha           #+#    #+#             */
-/*   Updated: 2023/12/26 13:58:13 by sel-jama         ###   ########.fr       */
+/*   Updated: 2024/01/05 17:50:23 by yboucha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,30 @@
 
 unsigned int	my_mlx_pixel_put(t_game **data, int x, int y, int n)
 {
-	if(n == 1)
+	if (n == 1)
 	{
-		return (*(unsigned int *)((*data)->addr
-			+(y * (*data)->line_length1 + x * ((*data)->bits_per_pixel1 / 8))));
+		return (*(unsigned int *)((*data)->addr + (y
+				* (*data)->line_length1 + x * ((*data)->bits_per_pixel1 / 8))));
 	}
-	if(n == 2)
+	if (n == 2)
 	{
-		return (*(unsigned int *)((*data)->addr2
-			+(y * (*data)->line_length2 + x * ((*data)->bits_per_pixel2 / 8))));
+		return (*(unsigned int *)((*data)->addr2 + (y
+				* (*data)->line_length2 + x * ((*data)->bits_per_pixel2 / 8))));
 	}
-	if(n == 3)
+	if (n == 3)
 	{
-		if(!(*data)->addr3)
-			exit(1);
-		return (*(unsigned int *)((*data)->addr3
-			+(y * (*data)->line_length3 + x * ((*data)->bits_per_pixel3 / 8))));
+		return (*(unsigned int *)((*data)->addr3 + (y
+				* (*data)->line_length3 + x * ((*data)->bits_per_pixel3 / 8))));
 	}
-	return (*(unsigned int *)((*data)->addr4
-		+(y * (*data)->line_length4 + x * ((*data)->bits_per_pixel4 / 8))));
+	return (*(unsigned int *)((*data)->addr4 + (y
+			* (*data)->line_length4 + x * ((*data)->bits_per_pixel4 / 8))));
 }
 
 int	draw_v2(t_game **cub)
 {
 	t_game	*game;
 	t_ray	*r;
-	int i;
+	int		i;
 
 	i = 0;
 	game = *cub;
@@ -47,18 +45,18 @@ int	draw_v2(t_game **cub)
 	if (r->hit_is_v == 0)
 	{
 		if (r->angle <= M_PI && r->angle >= 0)
-					i = 1;
+			i = 1;
 		else
-					i = 2;
+			i = 2;
 	}
 	else
 	{
 		if (r->angle <= (3 * M_PI) / 2 && r->angle >= M_PI / 2)
 			i = 3;
 		else
-			i = 4;	
+			i = 4;
 	}
-	return(i);
+	return (i);
 }
 
 void	draw_c(int y_start, t_game **cub, int x)
@@ -111,13 +109,13 @@ void	draw_v3(t_game **cub, int n)
 	t_game	*game;
 
 	game = *cub;
-	if(n == 1)
+	if (n == 1)
 		ft_helper(cub, game->i1, game->j1);
-	else if(n == 2)
+	else if (n == 2)
 		ft_helper(cub, game->i2, game->j2);
-	else if(n == 3)
+	else if (n == 3)
 		ft_helper(cub, game->i3, game->j3);
-	else if(n == 4)
+	else if (n == 4)
 		ft_helper(cub, game->i4, game->j4);
 	else if (n == 0)
 		exit(0);
@@ -129,11 +127,11 @@ void	draw_vertical_line(t_game **cub, int x, int wall_height)
 	int				ygame;
 	int				xgame;
 	int				y;
-	int n;
+	int				n;
 
 	n = 0;
 	n = draw_v2(cub);
-	if(n >= 1)
+	if (n >= 1)
 		draw_v3(cub, n);
 	(*cub)->y_start = (SCREEN_H - wall_height) / 2;
 	(*cub)->y_end = (*cub)->y_start + wall_height;
