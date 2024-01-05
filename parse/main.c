@@ -6,28 +6,29 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 00:06:54 by yboucha           #+#    #+#             */
-/*   Updated: 2023/12/27 13:43:04 by sel-jama         ###   ########.fr       */
+/*   Updated: 2024/01/05 16:24:38 by yboucha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execute/cub3d.h"
 
-void c_main_h(char *ptr, int *n)
+void	c_main_h(char *ptr, int *n)
 {
-		if (ptr && empty_line(ptr) == 0)
-        {
-			if((ptr[0] == 32 || ptr[0] == 9) || (ptr[0] != 'N' && ptr[0] != 'S' 
-				&& ptr[0] != 'W' && ptr[0] != 'E' && ptr[0] != 'F' && ptr[0] != 'C' && ptr[0] != '\n'))
-				ft_errors();
-            free(ptr);
-			ptr = NULL;
-        }
-		else if (ptr && empty_line(ptr) == 1)
-		{
-			free(ptr);
-			ptr = NULL;
-			*n += 1;
-		}
+	if (ptr && empty_line(ptr) == 0)
+	{
+		if ((ptr[0] == 32 || ptr[0] == 9) || (ptr[0] != 'N' && ptr[0] != 'S'
+				&& ptr[0] != 'W' && ptr[0] != 'E' && ptr[0] != 'F'
+				&& ptr[0] != 'C' && ptr[0] != '\n'))
+			ft_errors();
+		free(ptr);
+		ptr = NULL;
+	}
+	else if (ptr && empty_line(ptr) == 1)
+	{
+		free(ptr);
+		ptr = NULL;
+		*n += 1;
+	}
 }
 
 int	c_main(t_path *load, char *ptr, char *av[], int n)
@@ -43,7 +44,7 @@ int	c_main(t_path *load, char *ptr, char *av[], int n)
 		if (!ptr)
 		{
 			free(ptr);
-			break;
+			break ;
 		}
 		c_main_h(ptr, &n);
 		if (load->no && load->so && load->we && load->ea && load->f && load->c)
@@ -52,33 +53,33 @@ int	c_main(t_path *load, char *ptr, char *av[], int n)
 			break ;
 		}
 	}
-	if(ptr)
+	if (ptr)
 		free(ptr);
 	return (n);
 }
 
-void c_main2_h2(int i, char *tmp, t_path **load, int *l)
+void	c_main2_h2(int i, char *tmp, t_path **load, int *l)
 {
-	if(tmp[i] == 'F')
-		{
-			*l = 1;
-			if((*load)->f_tmp == 1)
-				ft_errors();
-		}
-	if(tmp[i] == 'C')
-		{
-			*l = 1;
-			if((*load)->c_tmp == 1)
-				ft_errors();
-		}
+	if (tmp[i] == 'F')
+	{
+		*l = 1;
+		if ((*load)->f_tmp == 1)
+			ft_errors();
+	}
+	if (tmp[i] == 'C')
+	{
+		*l = 1;
+		if ((*load)->c_tmp == 1)
+			ft_errors();
+	}
 }
 
-void c_main2_h(char **ptr, int n, t_path **load)
-{	
-	int i;
-	char *tmp;
-	int l;
-	int g;
+void	c_main2_h(char **ptr, int n, t_path **load)
+{
+	int		i;
+	char	*tmp;
+	int		l;
+	int		g;
 
 	i = 0;
 	l = 0;
@@ -86,26 +87,28 @@ void c_main2_h(char **ptr, int n, t_path **load)
 	while (tmp[i])
 	{
 		c_main2_h2(i, tmp, load, &l);
-		if(l == 1 && tmp[i] >= '0' && tmp[i] <= '9')
-				g = 1;
+		if (l == 1 && tmp[i] >= '0' && tmp[i] <= '9')
+			g = 1;
 		i++;
 	}
-	if(g == 0 && l == 1)
+	if (g == 0 && l == 1)
 		ft_errors();
 	if (empty_line(*ptr) == 0)
-		{
-			if((n >= 1 && *ptr[0] == '\n') || (n >= 1 && (*ptr[0] == 32 && *ptr[0] == 9)))
-				ft_errors();
-			free(*ptr);
-            *ptr = NULL;
-		}
+	{
+		if ((n >= 1 && *ptr[0] == '\n')
+			|| (n >= 1 && (*ptr[0] == 32 && *ptr[0] == 9)))
+			ft_errors();
+		free(*ptr);
+		*ptr = NULL;
+	}
 }
-void p_check(t_path **load)
+
+void	p_check(t_path **load)
 {
 	if (!(*load)->no && !(*load)->so && !(*load)->we
-			&& !(*load)->ea && (*load)->c_tmp == 0
-			&& (*load)->f_tmp == 0)
-					ft_errors();
+		&& !(*load)->ea && (*load)->c_tmp == 0
+		&& (*load)->f_tmp == 0)
+		ft_errors();
 }
 
 void	c_main2(t_path *load, char *ptr, char *av[], int n)
@@ -182,6 +185,6 @@ int	main(int ac, char *av[])
 	else
 		ft_errors();
 	cub.size = 32;
-    count_rows_c(&load, &cub);
+	count_rows_c(&load, &cub);
 	start_game(&cub);
 }

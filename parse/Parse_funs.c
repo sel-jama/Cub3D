@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 23:46:35 by yboucha           #+#    #+#             */
-/*   Updated: 2023/12/26 13:19:05 by sel-jama         ###   ########.fr       */
+/*   Updated: 2024/01/05 16:34:59 by yboucha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ int	empty_line(char *ptr)
 	int	i;
 
 	i = 0;
-	if(!ptr)
+	if (!ptr)
 		exit(0);
 	while (ptr[i])
 	{
-		if ((ptr[i] >= '0' && ptr[i] <= '9') || (ptr[i] == 'N' && ptr[i + 1] != 'O')
-			|| (ptr[i] == 'S' && ptr[i + 1] != 'O') || (ptr[i] == 'W' && ptr[i + 1] != 'E')
+		if ((ptr[i] >= '0' && ptr[i] <= '9') || (ptr[i] == 'N'
+				&& ptr[i + 1] != 'O') || (ptr[i] == 'S' && ptr[i + 1] != 'O')
+			|| (ptr[i] == 'W' && ptr[i + 1] != 'E')
 			|| (ptr[i] == 'E' && ptr[i + 1] != 'A'))
 			return (1);
 		i++;
@@ -42,10 +43,12 @@ int	norming(char **p, t_path **load, char **s, int i)
 {
 	char	*ptr;
 	char	*str;
+	char	*tmp;
 
+	tmp = NULL;
 	ptr = *p;
 	str = *s;
-	char *tmp = (ptr + (i + 3));
+	tmp = (ptr + (i + 3));
 	str = ft_strtrim(tmp, " ");
 	free (ptr);
 	ptr = ft_strjoin((*load)->box, str);
@@ -85,11 +88,14 @@ int	do_this(char **p, t_path **load, char **s, int i)
 
 int	parametere_map2(char *ptr, t_path **load, char *str, int i)
 {
+	char	*tmp;
+
+	tmp = NULL;
 	if ((ptr[i] == 'F' || ptr[i] == 'C'))
 	{
 		if ((ptr[i + 1] == 9 || ptr[i + 1] == 32) && ptr[i + 2])
 		{
-			char *tmp = (ptr + (i + 2));
+			tmp = (ptr + (i + 2));
 			str = ft_strtrim(tmp, "  ");
 			if (ptr[i] == 'F')
 				ptr = norming2(&ptr, &str, "F ");
@@ -151,7 +157,6 @@ int	parametre_map(char *ptr, t_path **load_2)
 			{
 				(*load_2)->box = "EA ";
 				return (norming(&ptr, load_2, &str, i));
-
 			}
 			else
 				ft_errors();

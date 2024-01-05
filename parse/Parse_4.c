@@ -6,7 +6,7 @@
 /*   By: yboucha <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 05:52:37 by yboucha           #+#    #+#             */
-/*   Updated: 2023/12/24 05:52:43 by yboucha          ###   ########.fr       */
+/*   Updated: 2024/01/05 16:37:55 by yboucha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@ int	is_rounded(char **ptr, int i, int j)
 			|| (!ptr[i][j - 1] || (ptr[i][j - 1] == 32 || ptr[i][j - 1] == 9))))
 		ft_errors();
 	if (((ptr[i + 1][j] == '\0' || ptr[i + 1][j] == '\n')
-	 	|| (ptr[i][j + 1] == '\0' || ptr[i][j + 1] == '\n') || (!ptr[i][j - 1])))
+			|| (ptr[i][j + 1] == '\0' || ptr[i][j + 1] == '\n')
+			|| (!ptr[i][j - 1])))
 		ft_errors();
 	if (((ptr[i - 1][j] == 32 || ptr[i - 1][j] == 9)
 			|| ((ptr[i][j + 1] == 32 || ptr[i][j + 1] == 9))))
-			ft_errors();
+		ft_errors();
 	if (!ptr[i + 1][j] || ptr[i + 1][j] == '\n')
 		ft_errors();
 	if (!ptr[i - 1][j])
@@ -38,9 +39,9 @@ int	is_rounded(char **ptr, int i, int j)
 void	check_double(char **ptr)
 {
 	char	c;
-	int t;
-	int i;
-	int j;
+	int		t;
+	int		i;
+	int		j;
 
 	t = 0;
 	i = 0;
@@ -53,7 +54,7 @@ void	check_double(char **ptr)
 			c = ptr[i][j];
 			if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 				t += 1;
-			if(t == 2)
+			if (t == 2)
 				ft_errors();
 			j++;
 		}

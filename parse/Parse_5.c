@@ -6,7 +6,7 @@
 /*   By: yboucha <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 05:54:30 by yboucha           #+#    #+#             */
-/*   Updated: 2023/12/24 05:54:35 by yboucha          ###   ########.fr       */
+/*   Updated: 2024/01/05 16:49:26 by yboucha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,11 @@ void	check_parametre(t_path **load_2)
 
 char	**load_identifier_2(int l, char *ptr, char **vpr, int g)
 {
+	char	*tmp;
+
+	tmp = NULL;
 	l = 2;
 	g = 0;
-	char *tmp = NULL;
 	while (ptr[l] && ptr[l] != '\n')
 	{
 		if (ptr[l] == ',')
@@ -76,7 +78,7 @@ char	**load_identifier_2(int l, char *ptr, char **vpr, int g)
 			ft_errors();
 		l++;
 	}
-	if(l <= 2)
+	if (l <= 2)
 		ft_errors();
 	if (g > 2 || g == 0)
 		ft_errors();
