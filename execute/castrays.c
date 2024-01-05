@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:51 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/24 11:32:15 by sel-jama         ###   ########.fr       */
+/*   Updated: 2024/01/05 17:44:23 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ void	hori_hit_point(t_game **cast, t_ray *ray)
 	double	delta_y;
 	double	y_to_check;
 
-	if (!first_horz_inter(cast, ray, &delta_x, &delta_y))
-		return ;
+	first_horz_inter(cast, ray, &delta_x, &delta_y);
 	calculate_horz_step((*cast)->size, ray, &xstep, &ystep);
 	while (delta_x >= 0 && delta_x <= (*cast)->window_w
 		&& delta_y >= 0 && delta_y <= (*cast)->window_h)
@@ -70,8 +69,7 @@ void	vert_hit_point(t_game **cast, t_ray *ray)
 	double	ystep;
 	double	x_to_check;
 
-	if (!first_vert_inter(cast, ray, &delta_x, &delta_y))
-		return ;
+	first_vert_inter(cast, ray, &delta_x, &delta_y);
 	calculate_vert_step((*cast)->size, ray, &xstep, &ystep);
 	while (delta_x >= 0 && delta_x <= (*cast)->window_w
 		&& delta_y >= 0 && delta_y <= (*cast)->window_h)

@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 20:35:19 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/26 13:44:48 by sel-jama         ###   ########.fr       */
+/*   Updated: 2024/01/05 18:52:33 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef struct game
 	int				j3;
 	int				i4;
 	int				j4;
-	int 			tmp1;
+	int				tmp1;
 	int				tmp_2;
 	char			*img1 ;
 	char			*img2 ;
@@ -118,33 +118,41 @@ typedef struct game
 	t_path			*path;
 }	t_game;
 
-void	start_game(t_game *cub);
-void	error_ditected(const char *error);
-void	initializer(t_game **cub);
-void	cast_rays(t_game **cast);
-double	normalize_angle(double angle);
-void	init_ray_h(t_ray *ray, double ray_angle);
-void	init_ray_v(t_ray *ray);
-double	get_distance(double x1, double x2, double y1, double y2);
-void	cast_ray(t_game **cast, int col_id, double ray_angle, double dis_pj);
-int		keypress_event(int keycode, t_game *cub);
-int		keyrelease(int keycode, t_game *cub);
-int		is_wall(t_game **cub, double x, double y);
-int		render_frame(t_game *cub);
-int		update_player_pos(t_game **cub);
-void	init_dir(t_game **game);
-void	turn_player(t_game **cub);
-void	draw_vertical_line(t_game **cub, int x, int wall_height);
-int		move_player(t_game **cub);
-int		is_player(char content);
-int		ft_exit(int keycode, t_game *param);
-void	closest_distance(t_game **cast, t_ray *ray);
-int		first_horz_inter(t_game **cub, t_ray *ray, double *dx, double *dy);
-int		first_vert_inter(t_game **cub, t_ray *ray, double *dx, double *dy);
-void	calculate_horz_step(int size, t_ray *ray, double *x, double *y);
-void	calculate_vert_step(int size, t_ray *ray, double *x, double *y);
-void	init_ray(t_game **cub);
-void	clean_up(char **map);
+void			start_game(t_game *cub);
+void			error_ditected(const char *error);
+void			initializer(t_game **cub);
+void			cast_rays(t_game **cast);
+double			normalize_angle(double angle);
+void			init_ray_h(t_ray *ray, double ray_angle);
+void			init_ray_v(t_ray *ray);
+double			get_distance(double x1, double x2, double y1, double y2);
+void			cast_ray(t_game **cast, int col_id,
+					double ray_angle, double dis_pj);
+int				keypress_event(int keycode, t_game *cub);
+int				keyrelease(int keycode, t_game *cub);
+int				is_wall(t_game **cub, double x, double y);
+int				render_frame(t_game *cub);
+int				update_player_pos(t_game **cub);
+void			init_dir(t_game **game);
+void			turn_player(t_game **cub);
+void			draw_vertical_line(t_game **cub, int x, int wall_height);
+int				move_player(t_game **cub);
+int				is_player(char content);
+int				ft_exit(int keycode, t_game *param);
+void			closest_distance(t_game **cast, t_ray *ray);
+void			first_horz_inter(t_game **cub, t_ray *ray,
+					double *dx, double *dy);
+void			first_vert_inter(t_game **cub, t_ray *ray,
+					double *dx, double *dy);
+void			calculate_horz_step(int size, t_ray *ray, double *x, double *y);
+void			calculate_vert_step(int size, t_ray *ray, double *x, double *y);
+void			init_ray(t_game **cub);
+void			clean_up(char **map);
 unsigned int	my_mlx_pixel_put(t_game **data, int x, int y, int n);
+void			load_address(t_game **c);
+void			load_images2(t_game **c);
+void			load_images(t_game **cub);
+void			draw_c(int y_start, t_game **cub, int x);
+void			draw_f(int y_end, t_game **cub, int x);
 
 #endif

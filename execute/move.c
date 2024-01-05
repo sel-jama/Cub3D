@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:44 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/26 13:49:06 by sel-jama         ###   ########.fr       */
+/*   Updated: 2024/01/05 18:39:47 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@ int	ft_exit(int keycode, t_game *param)
 {
 	(void)param;
 	(void)keycode;
-	// printf("%d",(*param)->rows);
-	// clean_up(param);
-	// mlx_destroy_window(param->mlx, param->window); 
 	exit(0);
 }
 

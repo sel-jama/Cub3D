@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:56:40 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/26 13:45:10 by sel-jama         ###   ########.fr       */
+/*   Updated: 2024/01/05 18:40:21 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	render_frame(t_game *cub)
 	cast_rays(&cub);
 	return (0);
 }
+
 void	clean_up(char **map)
 {
 	int	i;
@@ -31,5 +32,4 @@ void	clean_up(char **map)
 		i++;
 	}
 	free(map);
-	// mlx_destroy_window((*param)->mlx, (*param)->window);
 }

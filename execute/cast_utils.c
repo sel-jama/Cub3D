@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 07:02:32 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/24 06:58:53 by sel-jama         ###   ########.fr       */
+/*   Updated: 2024/01/05 17:44:13 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,20 @@ void	closest_distance(t_game **cast, t_ray *ray)
 	}
 }
 
-int	first_horz_inter(t_game **cub, t_ray *ray, double *dx, double *dy)
+void	first_horz_inter(t_game **cub, t_ray *ray, double *dx, double *dy)
 {
 	*dy = floor((*cub)->pos_y / 32) * 32;
 	if (ray->facing_down)
 		*dy += 32;
 	*dx = (*cub)->pos_x + (*dy - (*cub)->pos_y) / tan(ray->angle);
-	return (1);
 }
 
-int	first_vert_inter(t_game **cub, t_ray *ray, double *dx, double *dy)
+void	first_vert_inter(t_game **cub, t_ray *ray, double *dx, double *dy)
 {
 	*dx = floor((*cub)->pos_x / 32) * 32;
 	if (ray->facing_right)
 		*dx += 32;
 	*dy = (*cub)->pos_y + (*dx - (*cub)->pos_x) * tan(ray->angle);
-	return (1);
 }
 
 void	calculate_horz_step(int size, t_ray *ray, double *x, double *y)

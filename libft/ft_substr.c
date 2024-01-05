@@ -6,12 +6,13 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 13:34:12 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/12/24 07:28:29 by sel-jama         ###   ########.fr       */
+/*   Updated: 2024/01/05 18:53:47 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	j;
