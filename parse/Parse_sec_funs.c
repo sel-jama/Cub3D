@@ -12,10 +12,19 @@
 
 #include "Cube.h"
 
+void check_map2_h(char **ptr, int i, int j)
+{
+	int t;
+
+	t = 0;
+	t = is_rounded(ptr, i, j);
+	if (t == 2)
+		ft_errors();
+}
+
 void check_map2(int i, int n, char **ptr, int *f)
 {
 	int j;
-	int t;
 	char c;
 
 	j = 0;
@@ -26,17 +35,9 @@ void check_map2(int i, int n, char **ptr, int *f)
 			exit(0);
 		check_map3(i, n, c);
 		if (c == '0')
-		{
-			t = is_rounded(ptr, i, j);
-			if (t == 2)
-				ft_errors();
-		}
+			check_map2_h(ptr,i,j);
 		if (c == 'N' || c == 'E' || c == 'W' || c == 'S')
-		{
-			t = is_rounded(ptr, i, j);
-			if (t == 2)
-				ft_errors();
-		}
+			check_map2_h(ptr,i,j);
 		else if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		{
 			*f += 1;

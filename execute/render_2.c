@@ -97,57 +97,56 @@ void	draw_f(int y_end, t_game **cub, int x)
 	}
 }
 
+void	ft_helper(t_game **cub, int i, int j)
+{
+	t_game	*game;
+
+	game = *cub;
+	game->tmp1 = i;
+	game->tmp_2 = j;
+}
+
+void	draw_v3(t_game **cub, int n)
+{
+	t_game	*game;
+
+	game = *cub;
+	if(n == 1)
+		ft_helper(cub, game->i1, game->j1);
+	else if(n == 2)
+		ft_helper(cub, game->i2, game->j2);
+	else if(n == 3)
+		ft_helper(cub, game->i3, game->j3);
+	else if(n == 4)
+		ft_helper(cub, game->i4, game->j4);
+	else if (n == 0)
+		exit(0);
+}
+
 void	draw_vertical_line(t_game **cub, int x, int wall_height)
 {
-	t_game			*game;
 	unsigned int	color2;
 	int				ygame;
 	int				xgame;
 	int				y;
 	int n;
 
-	game = *cub;
 	n = 0;
 	n = draw_v2(cub);
 	if(n >= 1)
+		draw_v3(cub, n);
+	(*cub)->y_start = (SCREEN_H - wall_height) / 2;
+	(*cub)->y_end = (*cub)->y_start + wall_height;
+	xgame = ((*cub)->tmp1 * fmod((*cub)->ray->hit_x + (*cub)->ray->hit_y,
+				(*cub)->size)) / (*cub)->size;
+	draw_c((*cub)->y_start, cub, x);
+	y = (*cub)->y_start;
+	while (y < (*cub)->y_end)
 	{
-		if(n == 1)
-		{
-			game->tmp1 = game->i1;
-			game->tmp_2 = game->j1;
-		}
-		else if(n == 2)
-		{
-			game->tmp1 = game->i2;
-			game->tmp_2 = game->j2;
-		}
-		else if(n == 3)
-		{
-			game->tmp1 = game->i3;
-			game->tmp_2 = game->j3;
-		}
-		else if(n == 4)
-		{
-			game->tmp1 = game->i4;
-			game->tmp_2 = game->j4;
-		}
-		else if (n == 0)
-			exit(0);
-	}
-	// game->addr = mlx_get_data_addr(game->img2, &game->bits_per_pixel1,
-	// 		&game->line_length1, &game->endian1);
-	game->y_start = (SCREEN_H - wall_height) / 2;
-	game->y_end = game->y_start + wall_height;
-	xgame = (game->tmp1 * fmod(game->ray->hit_x + game->ray->hit_y,
-				game->size)) / game->size;
-	draw_c(game->y_start, cub, x);
-	y = game->y_start;
-	while (y < game->y_end)
-	{
-		ygame = (game->tmp_2 * (y - game->y_start)) / wall_height;
+		ygame = ((*cub)->tmp_2 * (y - (*cub)->y_start)) / wall_height;
 		color2 = my_mlx_pixel_put(cub, xgame, ygame, n);
-		mlx_pixel_put(game->mlx, game->window, x, y, color2);
+		mlx_pixel_put((*cub)->mlx, (*cub)->window, x, y, color2);
 		y++;
 	}
-	draw_f(game->y_end, cub, x);
+	draw_f((*cub)->y_end, cub, x);
 }

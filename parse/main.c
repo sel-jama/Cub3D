@@ -57,6 +57,22 @@ int	c_main(t_path *load, char *ptr, char *av[], int n)
 	return (n);
 }
 
+void c_main2_h2(int i, char *tmp, t_path **load, int *l)
+{
+	if(tmp[i] == 'F')
+		{
+			*l = 1;
+			if((*load)->f_tmp == 1)
+				ft_errors();
+		}
+	if(tmp[i] == 'C')
+		{
+			*l = 1;
+			if((*load)->c_tmp == 1)
+				ft_errors();
+		}
+}
+
 void c_main2_h(char **ptr, int n, t_path **load)
 {	
 	int i;
@@ -66,22 +82,10 @@ void c_main2_h(char **ptr, int n, t_path **load)
 
 	i = 0;
 	l = 0;
-	g = 0;
 	tmp = *ptr;
 	while (tmp[i])
 	{
-		if(tmp[i] == 'F')
-		{
-			l = 1;
-			if((*load)->f_tmp == 1)
-				ft_errors();
-		}
-		if(tmp[i] == 'C')
-		{
-			l = 1;
-			if((*load)->c_tmp == 1)
-				ft_errors();
-		}
+		c_main2_h2(i, tmp, load, &l);
 		if(l == 1 && tmp[i] >= '0' && tmp[i] <= '9')
 				g = 1;
 		i++;
@@ -95,6 +99,13 @@ void c_main2_h(char **ptr, int n, t_path **load)
 			free(*ptr);
             *ptr = NULL;
 		}
+}
+void p_check(t_path **load)
+{
+	if (!(*load)->no && !(*load)->so && !(*load)->we
+			&& !(*load)->ea && (*load)->c_tmp == 0
+			&& (*load)->f_tmp == 0)
+					ft_errors();
 }
 
 void	c_main2(t_path *load, char *ptr, char *av[], int n)
@@ -115,9 +126,7 @@ void	c_main2(t_path *load, char *ptr, char *av[], int n)
 		c_main2_h(&ptr, n, &load);
 		if ((ptr && parametre_map(ptr, &load) == 0 && empty_line(ptr) == 1))
 		{
-			if (!load->no && !load->so && !load->we && !load->ea
-				&& load->c_tmp == 0 && load->f_tmp == 0)
-					ft_errors();
+			p_check(&load);
 			load->map[n] = ptr;
 			n += 1;
 		}

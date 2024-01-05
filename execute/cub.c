@@ -61,34 +61,44 @@ int	get_player_pos(t_game **game, int row, int col, int a)
 	return (0);
 }
 
-void load_images2(t_game **cub)
+void	load_address(t_game **c)
 {
+	(*c)->addr = mlx_get_data_addr((*c)->img1, &(*c)->bits_per_pixel1, &(*c)->line_length1, &(*c)->endian1);
+	if(!(*c)->addr)
+		ft_errors();
+	(*c)->addr2 = mlx_get_data_addr((*c)->img2, &(*c)->bits_per_pixel2, &(*c)->line_length2, &(*c)->endian2);
+	if(!(*c)->addr2)
+		ft_errors();
+	(*c)->addr3 = mlx_get_data_addr((*c)->img3, &(*c)->bits_per_pixel3, &(*c)->line_length3, &(*c)->endian3);
+	if(!(*c)->addr3)
+		ft_errors();
+	(*c)->addr4 = mlx_get_data_addr((*c)->img4, &(*c)->bits_per_pixel4, &(*c)->line_length4, &(*c)->endian4);
+	if(!(*c)->addr4)
+		ft_errors();
+}
 
-	(*cub)->img1 = mlx_xpm_file_to_image((*cub)->mlx, (*cub)->path->no, &(*cub)->i1, &(*cub)->j1);
-	if(!(*cub)->img1)
-		ft_errors();
-	(*cub)->addr = mlx_get_data_addr((*cub)->img1, &(*cub)->bits_per_pixel1, &(*cub)->line_length1, &(*cub)->endian1);
-	if(!(*cub)->addr)
-		ft_errors();
-	(*cub)->img2 = mlx_xpm_file_to_image((*cub)->mlx, (*cub)->path->so, &(*cub)->i2, &(*cub)->j2);
-	if(!(*cub)->img2)
-		ft_errors();
-	(*cub)->addr2 = mlx_get_data_addr((*cub)->img2, &(*cub)->bits_per_pixel2, &(*cub)->line_length2, &(*cub)->endian2);
-	if(!(*cub)->addr2)
-		ft_errors();
-	(*cub)->img3 = mlx_xpm_file_to_image((*cub)->mlx, (*cub)->path->we, &(*cub)->i3, &(*cub)->j3);
-	if(!(*cub)->img3)
-		ft_errors();
-	(*cub)->addr3 = mlx_get_data_addr((*cub)->img3, &(*cub)->bits_per_pixel3, &(*cub)->line_length3, &(*cub)->endian3);
-	if(!(*cub)->addr3)
-		ft_errors();
-	(*cub)->img4 = mlx_xpm_file_to_image((*cub)->mlx, (*cub)->path->ea, &(*cub)->i4, &(*cub)->j4);
-	if(!(*cub)->img4)
-		ft_errors();
-	(*cub)->addr4 = mlx_get_data_addr((*cub)->img4, &(*cub)->bits_per_pixel4, &(*cub)->line_length4, &(*cub)->endian4);
-	if(!(*cub)->addr4)
-		ft_errors();
+void load_images2(t_game **c)
+{
+	t_path	*p;
 
+	p = (*c)->path;
+	(*c)->img1 = mlx_xpm_file_to_image((*c)->mlx, p->no, &(*c)->i1, &(*c)->j1);
+	if(!(*c)->img1)
+		ft_errors();
+	
+	(*c)->img2 = mlx_xpm_file_to_image((*c)->mlx, p->so, &(*c)->i2, &(*c)->j2);
+	if(!(*c)->img2)
+		ft_errors();
+	
+	(*c)->img3 = mlx_xpm_file_to_image((*c)->mlx, p->we, &(*c)->i3, &(*c)->j3);
+	if(!(*c)->img3)
+		ft_errors();
+	
+	(*c)->img4 = mlx_xpm_file_to_image((*c)->mlx, p->ea, &(*c)->i4, &(*c)->j4);
+	if(!(*c)->img4)
+		ft_errors();
+	
+	load_address(c);
 }
 
 void load_images(t_game **cub)

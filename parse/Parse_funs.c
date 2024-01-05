@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "Cube.h"
-#include "get_next_line/get_next_line.h"
-#include <stdio.h>
 
 void	load_map(int n, t_path **load)
 {
@@ -40,6 +38,51 @@ int	empty_line(char *ptr)
 	return (0);
 }
 
+int	norming(char **p, t_path **load, char **s, int i)
+{
+	char	*ptr;
+	char	*str;
+
+	ptr = *p;
+	str = *s;
+	char *tmp = (ptr + (i + 3));
+	str = ft_strtrim(tmp, " ");
+	free (ptr);
+	ptr = ft_strjoin((*load)->box, str);
+	free (str);
+	load_identifier(ptr, 3, load);
+	return (1);
+}
+
+char	*norming2(char **p, char **s, char *f_or_c)
+{
+	char	*ptr;
+	char	*str;
+
+	ptr = *p;
+	str = *s;
+	free(ptr);
+	ptr = ft_strjoin(f_or_c, str);
+	return (ptr);
+}
+
+int	do_this(char **p, t_path **load, char **s, int i)
+{
+	char	*ptr;
+	char	*str;
+
+	ptr = *p;
+	str = *s;
+	if ((ptr[i + 2] == 9 || ptr[i + 2] == 32) && ptr[i + 3])
+	{
+		(*load)->box = "NO ";
+		norming(&ptr, load, &str, i);
+	}
+	else
+		ft_errors();
+	return (1);
+}
+
 int	parametere_map2(char *ptr, t_path **load, char *str, int i)
 {
 	if ((ptr[i] == 'F' || ptr[i] == 'C'))
@@ -49,15 +92,9 @@ int	parametere_map2(char *ptr, t_path **load, char *str, int i)
 			char *tmp = (ptr + (i + 2));
 			str = ft_strtrim(tmp, "  ");
 			if (ptr[i] == 'F')
-			{
-				free(ptr);
-				ptr = ft_strjoin("F ", str);
-			}
+				ptr = norming2(&ptr, &str, "F ");
 			else
-			{
-				free (ptr);
-				ptr = ft_strjoin("C ", str);
-			}
+				ptr = norming2(&ptr, &str, "C ");
 			free(str);
 			load_identifier(ptr, 2, &(*load));
 			return (1);
@@ -66,20 +103,7 @@ int	parametere_map2(char *ptr, t_path **load, char *str, int i)
 			ft_errors();
 	}
 	if (ptr[i] == 'N' && ptr[i + 1] && ptr[i + 1] == 'O')
-	{
-		if ((ptr[i + 2] == 9 || ptr[i + 2] == 32) && ptr[i + 3])
-		{
-			char *tmp = (ptr + (i + 3));
-			str = ft_strtrim(tmp, " ");
-			free (ptr);
-			ptr = ft_strjoin("NO ", str);
-			free (str);
-			load_identifier(ptr, 3, &(*load));
-			return (1);
-		}
-		else
-			ft_errors();
-	}
+		return (do_this(&ptr, load, &str, i));
 	return (0);
 }
 
@@ -89,13 +113,8 @@ int	parametere_map3(char *ptr, t_path **load, char *str, int i)
 	{
 		if ((ptr[i + 2] == 9 || ptr[i + 2] == 32) && ptr[i + 3])
 		{
-			char *tmp = (ptr + (i + 3));
-			str = ft_strtrim(tmp, " ");
-			free (ptr);
-			ptr = ft_strjoin("SO ", str);
-			free (str);
-			load_identifier(ptr, 3, &(*load));
-			return (1);
+			(*load)->box = "SO ";
+			return (norming(&ptr, load, &str, i));
 		}
 		else
 			ft_errors();
@@ -104,13 +123,8 @@ int	parametere_map3(char *ptr, t_path **load, char *str, int i)
 	{
 		if ((ptr[i + 2] == 9 || ptr[i + 2] == 32) && ptr[i + 3])
 		{
-			char *tmp = (ptr + (i + 3));
-			str = ft_strtrim(tmp, " ");
-			free (ptr);
-			ptr = ft_strjoin("WE ", str);
-			free (str);
-			load_identifier(ptr, 3, &(*load));
-			return (1);
+			(*load)->box = "WE ";
+			return (norming(&ptr, load, &str, i));
 		}
 		else
 			ft_errors();
@@ -135,13 +149,9 @@ int	parametre_map(char *ptr, t_path **load_2)
 		{
 			if ((ptr[i + 2] == 9 || ptr[i + 2] == 32) && ptr[i + 3])
 			{
-				char *tmp = (ptr + (i + 3));
-				str = ft_strtrim(tmp, " ");
-				free(ptr);
-				ptr = ft_strjoin("EA ", str);
-				free(str);
-				load_identifier(ptr, 3, &(*load_2));
-				return (1);
+				(*load_2)->box = "EA ";
+				return (norming(&ptr, load_2, &str, i));
+
 			}
 			else
 				ft_errors();

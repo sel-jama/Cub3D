@@ -34,6 +34,7 @@ typedef struct path
 	unsigned int		c2;
 	unsigned int		c3;
 	char				**map;
+	char				*box;
 }	t_path;
 
 void	ft_errors(void);
